@@ -9,6 +9,7 @@ import com.squareup.moshi.JsonClass
 class LoginModel(val access_token:String, val token_type:String, @PrimaryKey val userName:String) {
 }
 
+@JsonClass(generateAdapter = true)
 class RegisterModel(val email :String, val username :String, val password :String, val confirmPassword :String) {
 
 }

@@ -32,4 +32,7 @@ interface LoginApiService {
     fun login(@Field("grant_type") grant_type:String = "password",
               @Field("username") username:String,
               @Field("password") password:String): Call<LoginModel>;
+    @POST("/API/Account/Register")
+    fun register(@Body registerData :RegisterModel) :Call<Unit>
 }
+
