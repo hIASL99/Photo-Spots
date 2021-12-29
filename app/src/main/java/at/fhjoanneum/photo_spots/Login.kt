@@ -1,5 +1,6 @@
 package at.fhjoanneum.photo_spots
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -47,6 +48,7 @@ class Login : AppCompatActivity() {
 
                 // Token needs to be stored locally
                 val token = it.access_token
+                storeLoginData(this, it)
 
                 // Go to Main Activity
                 Log.e("API",it.access_token.toString())
@@ -60,6 +62,12 @@ class Login : AppCompatActivity() {
                 toast.show()
             }
         )
+    }
+
+    private fun storeLoginData(context: Context, loginData: LoginModel) {
+        val applicationContext = context.applicationContext
+        val db = LoginModelDatabase.getDatabase(applicationContext)
+        db.loginModelDao.insert(loginData)
     }
 
 
