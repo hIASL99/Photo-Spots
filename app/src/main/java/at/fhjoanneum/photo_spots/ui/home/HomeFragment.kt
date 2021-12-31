@@ -1,5 +1,6 @@
 package at.fhjoanneum.photo_spots.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import at.fhjoanneum.photo_spots.CameraActivity
 import at.fhjoanneum.photo_spots.R
 import at.fhjoanneum.photo_spots.databinding.FragmentHomeBinding
 
@@ -30,7 +32,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        binding.homeButtonTakepic.setOnClickListener() {
+            val intent = Intent(getActivity(), CameraActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
