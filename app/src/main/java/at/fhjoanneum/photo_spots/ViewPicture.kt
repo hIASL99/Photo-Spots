@@ -177,7 +177,7 @@ class ViewPicture : AppCompatActivity() {
             val location = task.getResult()
 
             if (location != null){
-                Toast.makeText(this, "${location.latitude},${location.longitude}, ${location.altitude}", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(this, "${location.latitude},${location.longitude}, ${location.altitude}", Toast.LENGTH_SHORT).show()
 
                 try {
                     val geocoder = Geocoder(this, Locale.getDefault())
