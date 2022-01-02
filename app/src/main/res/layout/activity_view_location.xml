@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ViewPicture">
+
+        <ImageView
+            android:id="@+id/viewloc_imageview"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_button_back"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <Button
+            android:id="@+id/viewloc_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/viewloc_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="title"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_back" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="rating"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
+
+        <RatingBar
+            android:id="@+id/viewloc_ratingbar_rating"
+            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="64dp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_username"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_username"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_username" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="comment"
+            app:layout_constraintEnd_toEndOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_label_categories" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_label_categories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Categories"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_username" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_cat1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cat1"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_edittext_comment"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_categories" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_cat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="cat2"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_cat1"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_cat1" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_morecat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="more"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_cat2"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_cat2" />
+
+        <EditText
+            android:id="@+id/viewloc_edittext_comment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_comment"
+            app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_comment"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_comment" />
+
+        <Button
+            android:id="@+id/viewpic_button_categoryadd"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="Add"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_edittext_comment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_edittext_comment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
