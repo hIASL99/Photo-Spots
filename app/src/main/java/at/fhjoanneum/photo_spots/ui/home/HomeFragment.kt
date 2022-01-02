@@ -32,10 +32,15 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
+
         binding.homeButtonTakepic.setOnClickListener() {
-            val intent = Intent(getActivity(), CameraActivity::class.java)
-            getActivity()?.startActivity(intent)
+
+
+
+            val intent = Intent(activity, CameraActivity::class.java)
+            activity?.startActivity(intent)
         }
+
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it

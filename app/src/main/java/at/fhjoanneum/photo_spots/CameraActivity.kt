@@ -48,6 +48,7 @@ class CameraActivity : AppCompatActivity() {
         } else {
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUEST_CODE_PERMISSIONS)
         }
+
         //Setup ClickListener for photo button
         findViewById<Button>(R.id.camera_button_camera).setOnClickListener(){
 
@@ -156,7 +157,7 @@ class CameraActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Please allow Camera access!",Toast.LENGTH_SHORT).show()
             }
-            finish()
+            //finish()
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -207,16 +208,16 @@ class CameraActivity : AppCompatActivity() {
 
     }
     fun switchFlash() {
-        if (imageCapture?.getFlashMode() == FLASH_MODE_AUTO) {
-            imageCapture?.setFlashMode(FLASH_MODE_ON)
+        if (imageCapture?.flashMode == FLASH_MODE_AUTO) {
+            imageCapture?.flashMode = FLASH_MODE_ON
             Toast.makeText(this, "Set Flash-Mode to on",Toast.LENGTH_SHORT).show()
         }
-        else if (imageCapture?.getFlashMode() == FLASH_MODE_ON) {
-            imageCapture?.setFlashMode(FLASH_MODE_OFF)
+        else if (imageCapture?.flashMode == FLASH_MODE_ON) {
+            imageCapture?.flashMode = FLASH_MODE_OFF
             Toast.makeText(this, "Set Flash-Mode to off",Toast.LENGTH_SHORT).show()
         }
-        else if (imageCapture?.getFlashMode() == FLASH_MODE_OFF) {
-            imageCapture?.setFlashMode(FLASH_MODE_AUTO)
+        else if (imageCapture?.flashMode == FLASH_MODE_OFF) {
+            imageCapture?.flashMode = FLASH_MODE_AUTO
             Toast.makeText(this, "Set Flash-Mode to auto",Toast.LENGTH_SHORT).show()
         }
     }
