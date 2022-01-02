@@ -36,7 +36,6 @@ import okhttp3.MultipartBody
 
 class ViewPicture : AppCompatActivity() {
 
-    private var PERMISSION_ID = 1000
     private var photoLongitude:Double = 0.0
     private var photoLatitude:Double = 0.0
     private var  photoAltitude:Double = 0.0
@@ -60,13 +59,13 @@ class ViewPicture : AppCompatActivity() {
         }
 
 
-        val image = findViewById<ImageView>(R.id.viewpic_imageview)
+        //val image = findViewById<ImageView>(R.id.viewpic_imageview)
         val imageFile: File = imageUri.toFile()
 
-        val exifInterface: ExifInterface = ExifInterface(File(imageUri.path).absolutePath)
-        val longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE)
-        val latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE)
-        val test = exifInterface.getAttribute(TAG_DATETIME)
+        //val exifInterface: ExifInterface = ExifInterface(File(imageUri.path).absolutePath)
+        //val longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE)
+        //val latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE)
+        //val test = exifInterface.getAttribute(TAG_DATETIME)
 
         //Toast.makeText(this, longitude + latitude + test, Toast.LENGTH_SHORT).show()
 
@@ -79,21 +78,17 @@ class ViewPicture : AppCompatActivity() {
         }
         findViewById<Button>(R.id.viewpic_button_post).setOnClickListener(){
 
-
-
             val reqFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
             val body = MultipartBody.Part.createFormData("upload", imageFile.name, reqFile)
-            val name = RequestBody.create(MediaType.parse("text/plain"), "upload_test")
-
-            val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
-
             val photoTitle = findViewById<EditText>(R.id.viewpic_edittext_title).text.toString()
             val description = findViewById<EditText>(R.id.viewpic_edittext_description).text.toString()
             val postData = UploadPostModel(photoTitle, "", description, addressLocation,photoLongitude, photoLatitude, photoAltitude)
-            uploadPicture(body, postData)
-            //uploadPost(postData)
 
-
+            if(photoTitle.isNullOrEmpty() || description.isNullOrEmpty()){
+                Toast.makeText(this, "Please choose a Title and a Description for this Picture", Toast.LENGTH_SHORT).show()
+            }else{
+                uploadPicture(body, postData)
+            }
         }
 
         findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
@@ -108,6 +103,7 @@ class ViewPicture : AppCompatActivity() {
             success = {
                 // handle success
                 Log.e("POST","SUCCESS")
+                //this.parent.finish()
                 finish()
             },
             error = {
@@ -252,10 +248,6 @@ class ViewPicture : AppCompatActivity() {
                     photoLatitude = location.latitude
                     photoLongitude = location.longitude
 
-                    //val addressLine = address[0].getAddressLine((0))
-                    findViewById<TextView>(R.id.viewpic_textview_altitude).text = photoAltitude.toString()
-                    findViewById<TextView>(R.id.viewpic_textview_latitude).text = photoLatitude.toString()
-                    findViewById<TextView>(R.id.viewpic_textview_longitude).text = photoLongitude.toString()
                     findViewById<TextView>(R.id.viewpic_textview_address).text = addressLocation
 
 

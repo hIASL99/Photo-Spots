@@ -13,21 +13,27 @@
             android:id="@+id/viewpic_imageview"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
         <Button
             android:id="@+id/viewpic_button_retake"
+            style="@android:style/Widget.Holo.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Retake"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            app:icon="@android:drawable/ic_menu_edit"
+            app:iconPadding="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/viewpic_imageview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_imageview"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_imageview" />
+            app:layout_constraintEnd_toEndOf="@+id/viewpic_imageview"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_imageview"
+            app:layout_constraintTop_toTopOf="@+id/viewpic_imageview"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/viewpic_edittext_title"
@@ -45,96 +51,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="title"
+            android:text="Title"
             app:layout_constraintBottom_toBottomOf="@+id/viewpic_edittext_title"
             app:layout_constraintEnd_toStartOf="@+id/viewpic_edittext_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewpic_edittext_title" />
 
         <TextView
-            android:id="@+id/viewpic_textview_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="rating"
-            app:layout_constraintEnd_toEndOf="@+id/viewpic_text_name"
-            app:layout_constraintStart_toStartOf="@+id/viewpic_text_name"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_text_name" />
-
-        <RatingBar
-            android:id="@+id/viewpic_ratingbar_rating"
-            style="@android:style/Widget.DeviceDefault.Light.RatingBar.Indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="64dp"
-            app:layout_constraintBottom_toBottomOf="@+id/viewpic_textview_rating"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_rating"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_rating" />
-
-        <TextView
-            android:id="@+id/viewpic_textview_gpslabel_alt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Alititude"
-            app:layout_constraintEnd_toEndOf="@+id/viewpic_textview_rating"
-            app:layout_constraintStart_toStartOf="@+id/viewpic_textview_rating"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_rating" />
-
-        <TextView
-            android:id="@+id/viewpic_textview_altitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_gpslabel_alt"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_gpslabel_alt" />
-
-        <TextView
-            android:id="@+id/viewpic_textview_gpslabel_lat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Latitude"
-            app:layout_constraintEnd_toEndOf="@+id/viewpic_textview_gpslabel_alt"
-            app:layout_constraintStart_toStartOf="@+id/viewpic_textview_gpslabel_alt"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_gpslabel_alt" />
-
-        <TextView
-            android:id="@+id/viewpic_textview_latitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_gpslabel_lat"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_gpslabel_lat" />
-
-        <TextView
-            android:id="@+id/viewpic_textview_gpslabel_lon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Longitude"
-            app:layout_constraintEnd_toEndOf="@+id/viewpic_textview_gpslabel_lat"
-            app:layout_constraintStart_toStartOf="@+id/viewpic_textview_gpslabel_lat"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_gpslabel_lat" />
-
-        <TextView
-            android:id="@+id/viewpic_textview_longitude"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_gpslabel_lon"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_gpslabel_lon" />
-
-        <TextView
             android:id="@+id/viewpic_textview_gpslabel_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
             android:text="Address"
-            app:layout_constraintEnd_toEndOf="@+id/viewpic_textview_gpslabel_lon"
-            app:layout_constraintStart_toStartOf="@+id/viewpic_textview_gpslabel_lon"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_gpslabel_lon" />
+            app:layout_constraintEnd_toEndOf="@+id/viewpic_text_name"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_text_name"
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_text_name" />
 
         <TextView
             android:id="@+id/viewpic_textview_address"
@@ -177,19 +108,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_desc" />
 
-        <EditText
-            android:id="@+id/viewpic_edittext_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="@+id/viewpic_textview_label_categories"
-            app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_label_categories"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_label_categories" />
-
         <Button
             android:id="@+id/viewpic_button_categoryadd"
             android:layout_width="64dp"
@@ -204,24 +122,28 @@
             android:id="@+id/viewpic_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="@+id/viewpic_edittext_category"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_edittext_category" />
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_button_post" />
 
         <TextView
             android:id="@+id/viewpic_textview_cat2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat1"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_edittext_category" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_button_post" />
 
         <TextView
             android:id="@+id/viewpic_textview_morecat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat2"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_edittext_category" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_button_post" />
 
         <Button
             android:id="@+id/viewpic_button_post"
@@ -232,6 +154,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
+
+        <AutoCompleteTextView
+            android:id="@+id/viewpic_edittext_category"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/viewpic_textview_label_categories"
+            app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
+            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_label_categories"
+            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_label_categories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
