@@ -29,9 +29,6 @@ class Register : AppCompatActivity() {
             success = {
                 // handle success
 
-
-
-
                 val intent = Intent(this, Login::class.java)
                 startActivity(intent)
             },

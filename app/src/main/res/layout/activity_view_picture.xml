@@ -30,7 +30,7 @@
             app:layout_constraintTop_toTopOf="@+id/viewpic_imageview" />
 
         <EditText
-            android:id="@+id/viewpic_edittext_description"
+            android:id="@+id/viewpic_edittext_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -46,10 +46,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:text="title"
-            app:layout_constraintBottom_toBottomOf="@+id/viewpic_edittext_description"
-            app:layout_constraintEnd_toStartOf="@+id/viewpic_edittext_description"
+            app:layout_constraintBottom_toBottomOf="@+id/viewpic_edittext_title"
+            app:layout_constraintEnd_toStartOf="@+id/viewpic_edittext_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewpic_edittext_description" />
+            app:layout_constraintTop_toTopOf="@+id/viewpic_edittext_title" />
 
         <TextView
             android:id="@+id/viewpic_textview_rating"
@@ -157,7 +157,7 @@
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_gpslabel_add" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/viewpic_edittext_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -222,6 +222,16 @@
             android:layout_marginStart="8dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat2"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_edittext_category" />
+
+        <Button
+            android:id="@+id/viewpic_button_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

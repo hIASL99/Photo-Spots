@@ -47,11 +47,10 @@ class Login : AppCompatActivity() {
                 // handle success
 
                 // Token needs to be stored locally
-                val token = it.access_token
                 storeLoginData(this, it)
 
                 // Go to Main Activity
-                Log.e("API",it.access_token.toString())
+                //Log.e("API",it.access_token.toString())
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             },

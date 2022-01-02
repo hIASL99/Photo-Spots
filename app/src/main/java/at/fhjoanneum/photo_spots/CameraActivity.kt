@@ -76,7 +76,7 @@ class CameraActivity : AppCompatActivity() {
         var imageUri:String = "empty"
         val imageCapture = imageCapture
         //time-stamped output-file
-        val photoFile = File(outputDirectory, java.text.SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + ".jpg")
+        val photoFile = File(outputDirectory, java.text.SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + UUID.randomUUID().toString() + ".jpg")
         //Create output options object which contains File + metadata
         val outputOptions = OutputFileOptions.Builder(photoFile).build()
         //setup imaeg capture listener, triggered after photo has been taken
@@ -233,9 +233,6 @@ class CameraActivity : AppCompatActivity() {
         private val REQUIRED_PERMISSIONS = arrayOf(android.Manifest.permission.CAMERA)
 
         const val IMAGE_URI = "IMAGE_URI"
-        const val IMAGE_LATITUDE = "IMAGE_LATITUDE"
-        const val IMAGE_LONGITUDE = "IMAGE_LONGITUDE"
-        const val IMAGE_ADDRESS = "IMAGE_ADDRESS"
     }
 
 }
