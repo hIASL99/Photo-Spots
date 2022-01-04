@@ -2,6 +2,7 @@ package at.fhjoanneum.photo_spots
 
 import android.content.Context
 import com.squareup.moshi.Moshi
+import okhttp3.ResponseBody
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -47,5 +48,6 @@ interface LoginApiService {
     @Multipart
     @POST("API/Picture")
     fun uploadPicture(@Part image: MultipartBody.Part, @Header("Authorization") token: String):Call<String>
+
 }
 

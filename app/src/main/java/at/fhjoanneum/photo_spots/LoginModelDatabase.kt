@@ -8,6 +8,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [LoginModel::class], version = 1)
 abstract class LoginModelDatabase : RoomDatabase() {
     abstract val loginModelDao: LoginModelDao
+    abstract val logoutModelDao: LogoutModelDao
 
     companion object {
         private var INSTANCE: LoginModelDatabase? = null
