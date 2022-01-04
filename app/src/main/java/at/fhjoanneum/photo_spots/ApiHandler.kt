@@ -95,3 +95,20 @@ fun UploadPicture (picture: MultipartBody.Part, context: Context, success: (path
 
     })
 }
+fun LogoutUser (context: Context, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.logout(token) .enqueue(object:
+        Callback<Unit> {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+            val responseBody = response.body()
+            if (!response.isSuccessful || responseBody == null) {
+                error("Something went wrong")
+            }
+        }
+
+    })
+}

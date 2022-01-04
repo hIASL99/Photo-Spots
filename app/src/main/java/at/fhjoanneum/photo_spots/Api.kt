@@ -32,6 +32,8 @@ interface ApiService {
     @POST("/API/Account/Register")
     fun register(@Body registerData :RegisterModel) :Call<Unit>
 
+    @POST("API/Account/Logout")
+    fun logout(@Header("Authorization") token: String):Call<Unit>
     //Photos
     @POST("/API/Photos")
     fun uploadPost(@Body uploadPostModel: UploadPostModel,@Header("Authorization") token: String):Call<Unit>
@@ -39,6 +41,7 @@ interface ApiService {
     @Multipart
     @POST("API/Picture")
     fun uploadPicture(@Part image: MultipartBody.Part, @Header("Authorization") token: String):Call<String>
+
 
 }
 

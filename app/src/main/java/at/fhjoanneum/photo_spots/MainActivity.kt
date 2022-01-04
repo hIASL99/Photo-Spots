@@ -3,6 +3,7 @@ package at.fhjoanneum.photo_spots
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -61,11 +62,11 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.btn_logout -> {
+                logoutUser(this)
                 deleteLoginData(this)
                 Toast.makeText(applicationContext, "Successfully logged out", Toast.LENGTH_SHORT)
                     .show()
                 finish()
-            
             }
         }
         //return super.onOptionsItemSelected(item)
@@ -76,5 +77,13 @@ class MainActivity : AppCompatActivity() {
         val applicationContext = context.applicationContext
         val db = LoginModelDatabase.getDatabase(applicationContext)
         db.loginModelDao.deleteAll()
+    }
+    private fun logoutUser(context: Context) {
+        LogoutUser(context,
+            error = {
+                // handle error
+                Log.e("API-Logout","ERROR")
+            }
+        )
     }
 }
