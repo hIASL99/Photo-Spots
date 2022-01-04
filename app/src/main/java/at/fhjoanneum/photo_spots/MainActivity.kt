@@ -53,22 +53,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val username = findViewById<EditText>(R.id.login_input_email).text.toString()
-        when (item!!.itemId) {
+        when (item.itemId) {
             R.id.btn_settings -> {
                 Toast.makeText(applicationContext, "Settings", Toast.LENGTH_SHORT).show()
-                return true
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
             }
-            R.id.btn_logout -> { DeleteLoginData(this, username)
+            R.id.btn_logout -> {
+                DeleteLoginData(this)
                 Toast.makeText(applicationContext, "Successfully logged out", Toast.LENGTH_SHORT)
                     .show()
-                val intent = Intent(this, Login::class.java)
-                startActivity(intent)
-                return true
+                finish()
             
             }
         }
-        return super.onOptionsItemSelected(item)
+        //return super.onOptionsItemSelected(item)
+        return true
     }
 
 

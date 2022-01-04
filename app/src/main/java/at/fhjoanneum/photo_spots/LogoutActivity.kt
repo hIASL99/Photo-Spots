@@ -22,7 +22,7 @@ class LogoutActivity : AppCompatActivity() {
     }
 }
 
-public fun DeleteLoginData(context: Context, username:String) {
+public fun DeleteLoginData(context: Context) {
     val applicationContext = context.applicationContext
     val db = LoginModelDatabase.getDatabase(applicationContext)
     db.logoutModelDao.deleteAll()

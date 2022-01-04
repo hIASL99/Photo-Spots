@@ -36,6 +36,5 @@ interface LoginApiService {
     @POST("/API/Account/Register")
     fun register(@Body registerData :RegisterModel) :Call<Unit>
 
-
 }
 

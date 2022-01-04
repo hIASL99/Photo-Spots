@@ -12,9 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoSpots">
         <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
+        <activity
             android:name=".LogoutActivity"
             android:exported="false" />
-
         <activity
             android:name=".Register"
             android:exported="false" />
