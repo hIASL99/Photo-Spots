@@ -1,5 +1,6 @@
 package at.fhjoanneum.photo_spots
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
             }
             R.id.btn_logout -> {
-                DeleteLoginData(this)
+                deleteLoginData(this)
                 Toast.makeText(applicationContext, "Successfully logged out", Toast.LENGTH_SHORT)
                     .show()
                 finish()
@@ -71,5 +72,9 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-
+    private fun deleteLoginData(context: Context) {
+        val applicationContext = context.applicationContext
+        val db = LoginModelDatabase.getDatabase(applicationContext)
+        db.loginModelDao.deleteAll()
+    }
 }

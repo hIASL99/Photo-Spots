@@ -4,13 +4,10 @@ import android.content.Intent
 import android.widget.Button
 
 import android.content.pm.PackageManager
-import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -21,13 +18,11 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.bumptech.glide.Glide
 import java.io.File
 import java.lang.Exception
 import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.jar.Manifest
 
 class CameraActivity : AppCompatActivity() {
 
@@ -164,7 +159,7 @@ class CameraActivity : AppCompatActivity() {
     }
 
     fun startViewPic (EXTRA_ID: String, extra: String ) {
-        val postPictureIntent = Intent(this, ViewPicture::class.java)
+        val postPictureIntent = Intent(this, PostPictureActivity::class.java)
         postPictureIntent.putExtra(EXTRA_ID, extra)
         startActivity(postPictureIntent)
     }

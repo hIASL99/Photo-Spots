@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 
-class Register : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -29,7 +29,7 @@ class Register : AppCompatActivity() {
             success = {
                 // handle success
 
-                val intent = Intent(this, Login::class.java)
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             },
             error = {

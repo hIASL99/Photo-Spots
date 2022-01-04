@@ -17,6 +17,8 @@ interface LoginModelDao {
     @Query("SELECT access_token FROM LoginModel")
     fun getLoginToken():String?
 
+    @Query("DELETE FROM LoginModel")
+    fun deleteAll()
 }
 
 

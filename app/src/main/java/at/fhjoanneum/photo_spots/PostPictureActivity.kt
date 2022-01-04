@@ -5,12 +5,10 @@ import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.*
-import android.media.ExifInterface
 import android.media.ExifInterface.*
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.*
 import androidx.core.app.ActivityCompat
@@ -34,7 +32,7 @@ import okhttp3.MultipartBody
 
 
 
-class ViewPicture : AppCompatActivity() {
+class PostPictureActivity : AppCompatActivity() {
 
     private var photoLongitude:Double = 0.0
     private var photoLatitude:Double = 0.0
@@ -45,7 +43,7 @@ class ViewPicture : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view_picture)
+        setContentView(R.layout.activity_post_picture)
 
         val imageUriString: String = intent.getStringExtra(CameraActivity.IMAGE_URI).toString()
         Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
