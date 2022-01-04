@@ -10,3 +10,4 @@ interface LoginModelDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(logindata: LoginModel)
 }
+

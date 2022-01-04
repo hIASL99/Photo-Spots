@@ -1,6 +1,7 @@
 package at.fhjoanneum.photo_spots
 
 import com.squareup.moshi.Moshi
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -34,5 +35,7 @@ interface LoginApiService {
               @Field("password") password:String): Call<LoginModel>;
     @POST("/API/Account/Register")
     fun register(@Body registerData :RegisterModel) :Call<Unit>
+
+
 }
 

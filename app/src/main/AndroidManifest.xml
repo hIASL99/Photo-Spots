@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoSpots">
         <activity
+            android:name=".LogoutActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Register"
             android:exported="false" />
         <activity
@@ -26,7 +30,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
     </application>
 
 </manifest>

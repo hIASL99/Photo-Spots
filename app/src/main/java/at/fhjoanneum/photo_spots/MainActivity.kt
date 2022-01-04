@@ -1,8 +1,17 @@
 package at.fhjoanneum.photo_spots
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -31,5 +40,36 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.header_menu,menu)
+
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val username = findViewById<EditText>(R.id.login_input_email).text.toString()
+        when (item!!.itemId) {
+            R.id.btn_settings -> {
+                Toast.makeText(applicationContext, "Settings", Toast.LENGTH_SHORT).show()
+                return true
+            }
+            R.id.btn_logout -> { DeleteLoginData(this, username)
+                Toast.makeText(applicationContext, "Successfully logged out", Toast.LENGTH_SHORT)
+                    .show()
+                val intent = Intent(this, Login::class.java)
+                startActivity(intent)
+                return true
+            
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }
