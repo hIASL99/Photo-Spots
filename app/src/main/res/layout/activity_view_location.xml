@@ -40,14 +40,41 @@
             app:layout_constraintTop_toTopOf="@+id/viewloc_button_back" />
 
         <TextView
+            android:id="@+id/viewloc_textview_postrating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="100"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_like"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_like"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_like" />
+
+        <Button
+            android:id="@+id/viewloc_button_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Like"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_dislike"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_dislike"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_dislike" />
+
+        <Button
+            android:id="@+id/viewloc_button_dislike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dislike"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
+
+        <TextView
             android:id="@+id/viewloc_textview_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:text="rating"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_button_dislike" />
 
         <RatingBar
             android:id="@+id/viewloc_ratingbar_rating"
@@ -84,8 +111,10 @@
             android:id="@+id/viewloc_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:text="cat1"
-            app:layout_constraintStart_toStartOf="@+id/viewloc_edittext_comment"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_categories" />
 
         <TextView
@@ -94,6 +123,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="cat2"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_cat1"
             app:layout_constraintStart_toEndOf="@+id/viewloc_textview_cat1"
             app:layout_constraintTop_toTopOf="@+id/viewloc_textview_cat1" />
 
@@ -103,6 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="more"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_cat2"
             app:layout_constraintStart_toEndOf="@+id/viewloc_textview_cat2"
             app:layout_constraintTop_toTopOf="@+id/viewloc_textview_cat2" />
 
@@ -113,12 +144,12 @@
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_comment"
-            app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_commentadd"
             app:layout_constraintStart_toEndOf="@+id/viewloc_textview_comment"
             app:layout_constraintTop_toTopOf="@+id/viewloc_textview_comment" />
 
         <Button
-            android:id="@+id/viewpic_button_categoryadd"
+            android:id="@+id/viewloc_button_commentadd"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -126,6 +157,114 @@
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_edittext_comment"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewloc_edittext_comment" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_labeltopcomments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:text="Top Comments"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_comment" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_topcomment_username1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="username"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_labeltopcomments" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_topcomment_comment1"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="comment1"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_button_topcomment_minus1"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_username1" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_topcomment_rating1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="10"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_topcomment_plus1"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_plus1"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus1" />
+
+        <Button
+            android:id="@+id/viewloc_button_topcomment_plus1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="4dp"
+            android:text="+"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_minus1"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_topcomment_username1" />
+
+        <Button
+            android:id="@+id/viewloc_button_topcomment_minus1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="250dp"
+            android:text="-"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_topcomment_plus1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus1" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_topcomment_username2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="username2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_button_topcomment_plus1" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_topcomment_comment2"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="comment2"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_button_topcomment_minus2"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_username2" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_topcomment_rating2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="100"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_topcomment_plus2"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_plus2"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus2" />
+
+        <Button
+            android:id="@+id/viewloc_button_topcomment_plus2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="4dp"
+            android:text="+"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_minus2"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_topcomment_username2" />
+
+        <Button
+            android:id="@+id/viewloc_button_topcomment_minus2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="250dp"
+            android:text="-"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_topcomment_plus2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PhotoSpots">
         <activity
-            android:name=".ViewLocation"
+            android:name=".ViewLocationActivity"
             android:exported="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -41,16 +41,16 @@
             android:name=".MapsActivity"
             android:exported="false" />
         <activity
-            android:name=".ViewPicture"
+            android:name=".PostPictureActivity"
             android:exported="false" />
         <activity
             android:name=".CameraActivity"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".LoginActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

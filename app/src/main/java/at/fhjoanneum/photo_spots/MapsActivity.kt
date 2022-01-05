@@ -35,7 +35,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     lateinit var locationRequest: com.google.android.gms.location.LocationRequest
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    lateinit var GpsData: GpsData
+    //lateinit var GpsData: GpsDataModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,13 +64,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             true
         }
         mMap.setOnInfoWindowClickListener {
-            val viewPicIntent = Intent(this, ViewLocation::class.java)
-            viewPicIntent.putExtra(TAG_ID, it.getTag().toString())
-            startActivity(viewPicIntent)
+            if (it.tag != "001") {
+                val viewPicIntent = Intent(this, ViewLocationActivity::class.java)
+                viewPicIntent.putExtra(TAG_ID, it.getTag().toString())
+                startActivity(viewPicIntent)
+            } else {
+                val takePicIntent = Intent(this, CameraActivity::class.java)
+                startActivity(takePicIntent)
+            }
+
 
 
         }
     }
+
+    //Fast gleicher Code wie PostPictureActivity
+    //Falls irgendwer eine Lösung findet auf die Funktionen in der anderen Activity zuzugreifen, wäre es super :)
+    //Einzige Änderung ist, dass bei getUserLocation das Ganze auf der Map dargestellt wird und nicht in den TextView kommt
 
     fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -134,8 +144,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     }
 
-    fun getUserLocation() :GpsData {
-        var GpsData = GpsData(0.0,0.0,0.0,"hallo")
+    fun getUserLocation() {
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -145,7 +155,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
 
-            return GpsData
+            return
         }
 
         fusedLocationProviderClient.lastLocation.addOnCompleteListener { task ->
@@ -164,10 +174,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                     val addressLocation = address[0].getAddressLine(0)
 
 
-                    GpsData = GpsData(location.altitude, location.latitude, location.longitude, addressLine)
-                    val currentPosition = LatLng(GpsData.Latitude, GpsData.Longitude)
+                    //GpsData = GpsDataModel(location.altitude, location.latitude, location.longitude, addressLine)
+                    val currentPosition = LatLng(location.latitude, location.longitude)
 
-                    mMap.addMarker(MarkerOptions().position(currentPosition).title(GpsData.Address).snippet("Your current Location").icon(
+                    mMap.addMarker(MarkerOptions().position(currentPosition).title(addressLine).snippet("Your current Location").icon(
                         BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)))?.setTag("001")
 
                     //mMap.moveCamera(CameraUpdateFactory.zoomIn())
@@ -184,8 +194,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
         }
-        return GpsData
+        return
     }
+
+
+    //Auch gerne so umschreiben, dass auf die Daten in der Datenbank zugegriffen wird
+    //Kenne ich mich ehrlich gesagt noch zu wenig aus, um das selbst umzusetzen, danke :)
+    //LocationRepository habe ich nur zu Testzwecken erstellt, könnt ihr gerne rausnehmen
+
 
     fun setExistingMarkers() {
 
