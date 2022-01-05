@@ -27,7 +27,7 @@ fun GetLoginToken(username:String,password:String,success: (loginData: LoginMode
     })
 }
 
-fun RegisterNewUser (registerData :RegisterModel ,success: (registerData: RegisterModel) -> Unit, error: (errorMessage: String) -> Unit) {
+fun RegisterNewUser (registerData :RegisterModel ,success: () -> Unit, error: (errorMessage: String) -> Unit) {
     Api.retrofitService.register(registerData) .enqueue(object:
         Callback<Unit> {
         override fun onFailure(call: Call<Unit>, t: Throwable) {
@@ -37,16 +37,16 @@ fun RegisterNewUser (registerData :RegisterModel ,success: (registerData: Regist
         override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             val responseBody = response.body()
             if (response.isSuccessful && responseBody != null) {
-                success(registerData)
+                success()
             } else {
-                error("Something went wrong")
+                error(response.message().toString())
             }
         }
 
     })
 }
 
-fun UploadNewPost (uploadPostModel: UploadPostModel, context: Context ,success: (uploadData: UploadPostModel) -> Unit, error: (errorMessage: String) -> Unit) {
+fun UploadNewPost (uploadPostModel: UploadPostModel, context: Context ,success: () -> Unit, error: (errorMessage: String) -> Unit) {
     val token = getLoginToken(context)
     Api.retrofitService.uploadPost(uploadPostModel, token) .enqueue(object:
         Callback<Unit> {
@@ -58,7 +58,7 @@ fun UploadNewPost (uploadPostModel: UploadPostModel, context: Context ,success: 
         override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             val responseBody = response.body()
             if (response.isSuccessful && responseBody != null) {
-                success(uploadPostModel)
+                success()
             } else {
                 Log.e("APICALL", response.message())
                 error(response.message().toString())
@@ -107,6 +107,26 @@ fun LogoutUser (context: Context, error: (errorMessage: String) -> Unit) {
             val responseBody = response.body()
             if (!response.isSuccessful || responseBody == null) {
                 error("Something went wrong")
+            }
+        }
+
+    })
+}
+fun getUserInfo (context: Context, success: () -> Unit, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.getUserInfo(token) .enqueue(object:
+        Callback<Unit> {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success()
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
             }
         }
 

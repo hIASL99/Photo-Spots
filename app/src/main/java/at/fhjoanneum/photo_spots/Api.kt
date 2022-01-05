@@ -34,6 +34,10 @@ interface ApiService {
 
     @POST("API/Account/Logout")
     fun logout(@Header("Authorization") token: String):Call<Unit>
+
+    @GET("api/account/userinfo")
+    fun getUserInfo(@Header("Authorization") token: String):Call<Unit>
+
     //Photos
     @POST("/API/Photos")
     fun uploadPost(@Body uploadPostModel: UploadPostModel,@Header("Authorization") token: String):Call<Unit>

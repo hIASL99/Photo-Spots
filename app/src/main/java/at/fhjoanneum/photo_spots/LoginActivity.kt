@@ -15,6 +15,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
 
+
         findViewById<Button>(R.id.login_btn_login).setOnClickListener {
 
             val username = findViewById<EditText>(R.id.login_input_email).text.toString()
@@ -35,7 +36,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
+        tryLogin()
+    }
 
+    private fun tryLogin(){
+        getUserInfo(this,
+        success = {
+            // handle success
+
+            // Go to Main Activity
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        },
+        error = {
+            // handle error
+            Log.e("Login",it)
+        })
     }
 
     private fun loginPressed(username:String, password:String){
