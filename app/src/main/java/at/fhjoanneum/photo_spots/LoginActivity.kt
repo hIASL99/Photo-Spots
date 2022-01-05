@@ -11,6 +11,7 @@ import android.widget.Toast
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        tryLogin()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
@@ -36,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        tryLogin()
+
     }
 
     private fun tryLogin(){

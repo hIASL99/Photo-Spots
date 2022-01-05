@@ -46,6 +46,7 @@ interface ApiService {
     @POST("API/Picture")
     fun uploadPicture(@Part image: MultipartBody.Part, @Header("Authorization") token: String):Call<String>
 
-
+    @GET("Api/photos")
+    fun getPhotos(@Header("Authorization") token: String):Call<List<PostModel>>
 }
 
