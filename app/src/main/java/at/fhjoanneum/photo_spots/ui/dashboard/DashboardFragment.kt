@@ -3,6 +3,7 @@ package at.fhjoanneum.photo_spots.ui.dashboard
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import at.fhjoanneum.photo_spots.PostAdapter
 import at.fhjoanneum.photo_spots.PostRepository
+import at.fhjoanneum.photo_spots.CameraActivity
+import at.fhjoanneum.photo_spots.MapsActivity
 import at.fhjoanneum.photo_spots.R
 import at.fhjoanneum.photo_spots.databinding.FragmentDashboardBinding
 
@@ -42,6 +45,10 @@ class DashboardFragment : Fragment() {
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
+        binding.dashboardButtonViewmap.setOnClickListener() {
+            val intent = Intent(getActivity(), MapsActivity::class.java)
+            getActivity()?.startActivity(intent)
+        }
 
         //super.onCreate(savedInstanceState)
 

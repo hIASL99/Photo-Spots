@@ -46,7 +46,7 @@ class PostPictureActivity : AppCompatActivity() {
         setContentView(R.layout.activity_post_picture)
 
         val imageUriString: String = intent.getStringExtra(CameraActivity.IMAGE_URI).toString()
-        Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
         val imageUri: Uri = imageUriString.toUri()
         if (imageUriString != "empty") {
 
@@ -89,7 +89,7 @@ class PostPictureActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
+        findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
             addCategory()
         }
 

@@ -109,7 +109,7 @@
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_desc" />
 
         <Button
-            android:id="@+id/viewpic_button_categoryadd"
+            android:id="@+id/viewloc_button_commentadd"
             android:layout_width="64dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
@@ -162,7 +162,7 @@
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintBottom_toBottomOf="@+id/viewpic_textview_label_categories"
-            app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_commentadd"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_label_categories"
             app:layout_constraintTop_toTopOf="@+id/viewpic_textview_label_categories" />
 
