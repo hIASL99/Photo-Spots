@@ -87,7 +87,7 @@ class PostModel(val Id:Int,
                 val LocationLongitude:Double,
                 val LocationLatitude:Double,
                 val LocationAltitude:Double,
-
+                val UserName:String
                 //val Categories : List<String>,
                 //val CreatedDate : Date,
                 //val Rating : Float

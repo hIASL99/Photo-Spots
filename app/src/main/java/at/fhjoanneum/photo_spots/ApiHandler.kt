@@ -89,7 +89,7 @@ fun UploadPicture (picture: MultipartBody.Part, context: Context, success: (path
                 success(responseBody.toString())
             } else {
                 Log.e("APICALL", response.message())
-                error(response.message().toString())
+                error(response.code().toString())
             }
         }
 

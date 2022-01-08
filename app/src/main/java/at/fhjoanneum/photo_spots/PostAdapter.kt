@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,7 +13,7 @@ class PostAdapter (val clickListener: (post: PostModel) -> Unit): RecyclerView.A
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val photoItemView = inflater.inflate(R.layout.test, parent, false)
+        val photoItemView = inflater.inflate(R.layout.item_photo, parent, false)
         return PostViewHolder(photoItemView, clickListener)
     }
 
@@ -37,7 +36,7 @@ class PostAdapter (val clickListener: (post: PostModel) -> Unit): RecyclerView.A
 class PostViewHolder(itemView: View, val clickListener: (post: PostModel) -> Unit): RecyclerView.ViewHolder(itemView){
     fun bindItem(post: PostModel) {
         itemView.findViewById<TextView>(R.id.item_photo_txt_title).text = post.Title
-        itemView.findViewById<TextView>(R.id.item_photo_txt_description).text = post.Description
+        itemView.findViewById<TextView>(R.id.item_photo_txt_username).text = post.UserName
         itemView.findViewById<TextView>(R.id.item_photo_txt_address).text = post.Location
         //itemView.findViewById<TextView>(R.id.item_photo_rating_count).text = post.Rating.toString()
         //itemView.findViewById<RatingBar>(R.id.item_photo_avg_rating_bar).rating = post.Rating

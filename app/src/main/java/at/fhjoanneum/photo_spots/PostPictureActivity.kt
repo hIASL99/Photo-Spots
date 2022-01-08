@@ -125,7 +125,7 @@ class PostPictureActivity : AppCompatActivity() {
             error = {
                 // handle error
                 Log.e("API",it)
-                val toast = Toast.makeText(applicationContext, "Post failed, please try again later", Toast.LENGTH_LONG)
+                val toast = Toast.makeText(applicationContext, it, Toast.LENGTH_LONG)
                 toast.show()
             }
         )
