@@ -19,7 +19,7 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.login_btn_login).setOnClickListener {
 
-            val username = findViewById<EditText>(R.id.login_input_email).text.toString()
+            val username = findViewById<EditText>(R.id.login_input_username).text.toString()
             val password = findViewById<EditText>(R.id.login_input_password).text.toString()
             if(username.isNotEmpty() && password.isNotEmpty()){
                 loginPressed(username, password)
