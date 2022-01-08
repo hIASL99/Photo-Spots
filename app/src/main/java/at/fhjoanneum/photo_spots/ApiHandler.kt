@@ -95,6 +95,7 @@ fun UploadPicture (picture: MultipartBody.Part, context: Context, success: (path
 
     })
 }
+
 fun LogoutUser (context: Context, error: (errorMessage: String) -> Unit) {
     val token = getLoginToken(context)
     Api.retrofitService.logout(token) .enqueue(object:
@@ -107,6 +108,68 @@ fun LogoutUser (context: Context, error: (errorMessage: String) -> Unit) {
             val responseBody = response.body()
             if (!response.isSuccessful || responseBody == null) {
                 error("Something went wrong")
+            }
+        }
+
+    })
+}
+fun GetUserName (context: Context, success: (UserName:String) -> Unit, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.getUserName(token) .enqueue(object:
+        Callback<String>{
+        override fun onFailure(call: Call<String>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<String>, response: Response<String>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success(responseBody)
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}
+fun PutUserName (context: Context,UserName:ChangeUserName, success: () -> Unit, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.putUserName(UserName, token) .enqueue(object:
+        Callback<Unit>{
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success()
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}
+
+fun ChangePassword (changePasswordModel: ChangePasswordModel, context: Context ,success: () -> Unit, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.changePassword(changePasswordModel, token) .enqueue(object:
+        Callback<Unit> {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
+            error("The call failed")
+            Log.e("APICALL", "TEST")
+        }
+
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success()
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
             }
         }
 
@@ -132,4 +195,5 @@ fun getUserInfo (context: Context, success: () -> Unit, error: (errorMessage: St
 
     })
 }
+
 

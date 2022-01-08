@@ -11,5 +11,11 @@ class LoginModel(val access_token:String, val token_type:String, @PrimaryKey val
 
 @JsonClass(generateAdapter = true)
 class RegisterModel(val email :String, val username :String, val password :String, val confirmPassword :String) {
-
 }
+
+@JsonClass(generateAdapter = true)
+class ChangePasswordModel(val OldPassword :String, val NewPassword:String, val ConfirmPassword:String) {
+}
+
+@JsonClass(generateAdapter = true)
+class ChangeUserName(val username: String){}
