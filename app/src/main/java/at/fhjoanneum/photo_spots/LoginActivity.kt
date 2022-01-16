@@ -56,9 +56,12 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun loginPressed(username:String, password:String){
+
         GetLoginToken(username,password,
             success = {
                 // handle success
+                //delete all stored users
+                deleteLoginData(this)
 
                 // Token needs to be stored locally
                 storeLoginData(this, it)
@@ -75,6 +78,12 @@ class LoginActivity : AppCompatActivity() {
                 toast.show()
             }
         )
+    }
+
+    private fun deleteLoginData(context: Context) {
+        val applicationContext = context.applicationContext
+        val db = LoginModelDatabase.getDatabase(applicationContext)
+        db.loginModelDao.deleteAll()
     }
 
     private fun storeLoginData(context: Context, loginData: LoginModel) {
