@@ -15,11 +15,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import at.fhjoanneum.photo_spots.PostAdapter
-import at.fhjoanneum.photo_spots.PostRepository
-import at.fhjoanneum.photo_spots.CameraActivity
-import at.fhjoanneum.photo_spots.MapsActivity
-import at.fhjoanneum.photo_spots.R
+import at.fhjoanneum.photo_spots.*
 import at.fhjoanneum.photo_spots.databinding.FragmentDashboardBinding
 
 class DashboardFragment : Fragment() {
@@ -32,9 +28,11 @@ class DashboardFragment : Fragment() {
 
     val postAdapter = PostAdapter() {
 
-        //val intent = Intent(context, LessonRatingActivity::class.java)
-        //intent.putExtra(EXTRA_LESSON_ID, it.id)
-        //startActivityForResult(intent, ADD_OR_EDIT_RATING_REQUEST)
+        val intent = Intent(context, ViewLocationActivity::class.java)
+        intent.putExtra(TAG_ID, it.Id.toString())
+
+        intent.putExtra(TAG_BOOL, false)
+        startActivity(intent)
     }
 
     override fun onCreateView(
@@ -44,10 +42,6 @@ class DashboardFragment : Fragment() {
     ): View {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val root: View = binding.root
-        binding.dashboardButtonViewmap.setOnClickListener() {
-            val intent = Intent(getActivity(), MapsActivity::class.java)
-            getActivity()?.startActivity(intent)
-        }
 
         //super.onCreate(savedInstanceState)
 
@@ -82,5 +76,10 @@ class DashboardFragment : Fragment() {
                 Log.e("API ERROR",it)
             }
         )
+    }
+
+    companion object {
+        const val TAG_ID = "TAG_ID"
+        const val TAG_BOOL = "TAG_BOOL"
     }
 }

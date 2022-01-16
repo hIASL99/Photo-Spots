@@ -35,7 +35,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     lateinit var locationRequest: com.google.android.gms.location.LocationRequest
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    //lateinit var GpsData: GpsDataModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -204,7 +204,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
 
     fun setExistingMarkers() {
-
+/*
         val locationIds = LocationRepository.getLocationIds()
         for (id in locationIds) {
             val location = LocationRepository.locationById(id)
@@ -218,6 +218,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 )?.setTag(location.id)
             }
         }
+
+ */
     }
 
     companion object {

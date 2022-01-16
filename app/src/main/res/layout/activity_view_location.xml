@@ -3,68 +3,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
         tools:context=".ViewPicture">
-
-        <ImageView
-            android:id="@+id/viewloc_imageview"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_button_back"
-            tools:srcCompat="@tools:sample/avatars" />
-
-        <Button
-            android:id="@+id/viewloc_button_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="Back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/viewloc_text_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:text="title"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_back"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_label_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:text="by"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_text_title"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_textview_postuser"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_text_title" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_postuser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_label_by"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_button_back" />
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_by" />
+
+        <ImageView
+            android:id="@+id/viewloc_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="300dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_text_title"
+            app:layout_constraintWidth_max="300dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/viewloc_imageview"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_imageview"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
 
         <TextView
             android:id="@+id/viewloc_textview_postrating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="8dp"
             android:text="100"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_like"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_like"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_button_like" />
-
-        <Button
-            android:id="@+id/viewloc_button_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Like"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_dislike"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_dislike"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_like"
             app:layout_constraintTop_toTopOf="@+id/viewloc_button_dislike" />
 
         <Button
-            android:id="@+id/viewloc_button_dislike"
+            android:id="@+id/viewloc_button_like"
+            style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dislike"
+            app:icon="@android:drawable/arrow_up_float"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_postrating"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_dislike"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_postrating" />
+
+        <Button
+            android:id="@+id/viewloc_button_dislike"
+            style="@style/Widget.AppCompat.Button.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@android:drawable/arrow_down_float"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_address" />
 
         <TextView
             android:id="@+id/viewloc_textview_username"
@@ -72,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:text="rating"
+            android:text="Rating"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_button_dislike" />
 
@@ -92,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="comment"
+            android:text="Comment"
             app:layout_constraintEnd_toEndOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintStart_toStartOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_label_categories" />

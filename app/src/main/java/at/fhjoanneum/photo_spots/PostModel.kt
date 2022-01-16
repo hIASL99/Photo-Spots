@@ -9,7 +9,9 @@ import java.util.*
 class UploadPostModel(val Title:String, var Photo:String, val Description:String, val Location:String, val LocationLongitude:Double, val LocationLatitude:Double, val LocationAltitude:Double) {
 }
 @JsonClass(generateAdapter = true)
-class UploadPostModel2(val id: String, val title: String, val rating: Float, val description: String, val GpsData: GpsDataModel, val Categories: List<String>, val Image: String, val comments: MutableList<PostComment>, val postRating: MutableList<Pair<String, Boolean>>) {
+class UploadPostModel2(val id: String, val title: String, val rating: Float, val description: String, val gpsData: GpsDataModel,
+                       val categories: List<String>, val image: String, val comments: MutableList<PostComment>,
+                       val postRating: MutableList<Pair<String, Boolean>>, val username: String) {
     fun addComment(username: String, comment: String) {
         comments.add(PostComment(username, comment, mutableListOf<Pair<String, Boolean>>()))
     }
@@ -87,11 +89,12 @@ class PostModel(val Id:Int,
                 val LocationLongitude:Double,
                 val LocationLatitude:Double,
                 val LocationAltitude:Double,
-                val UserName:String
-                //val Categories : List<String>,
+                val UserName:String,
+                val Categories : List<String> = mutableListOf(),
                 //val CreatedDate : Date,
-                //val Rating : Float
-
+                val Rating : Float = 3.0f
+                //,val postRating: MutableList<Pair<String, Boolean>>
+                //, val comments: MutableList<PostComment>
                 ) {
 
 }
