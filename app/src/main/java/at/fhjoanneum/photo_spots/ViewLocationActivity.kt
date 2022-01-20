@@ -89,9 +89,8 @@ class ViewLocationActivity : AppCompatActivity() {
                 }
             )
         }
-
-
     }
+
     fun setupPost(location: UploadPostModel2) {
         findViewById<TextView>(R.id.viewloc_textview_postuser).setText(location.username)
         findViewById<TextView>(R.id.viewloc_text_title).setText(location.title)
@@ -155,7 +154,23 @@ class ViewLocationActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.viewloc_textview_postrating).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
         }
 
+        // share button
+        findViewById<Button>(R.id.viewloc_button_share).setOnClickListener {
+            val message = "Have a look at this nice PhotoSpot '" + location.title + "' uploaded by " + location.username + "!\n" +
+                    "Address:\n" +
+                    location.gpsData.Address +
+                    "\nOpen with google maps:\n" +
+                    "https://maps.google.com/maps?q=loc:" + location.gpsData.Latitude + "," + location.gpsData.Longitude
 
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT, message)
+                type = "text/plain"
+            }
+
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
 
 
     }
