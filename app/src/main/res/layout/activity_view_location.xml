@@ -297,5 +297,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus2" />
 
+        <Button
+            android:id="@+id/viewloc_button_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="share"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_like"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_button_like" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
