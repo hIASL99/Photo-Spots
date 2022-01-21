@@ -22,4 +22,10 @@
         android:name="at.fhjoanneum.photo_spots.ui.map.MapFragment"
         android:label="@string/title_map"
         tools:layout="@layout/fragment_map" />
+
+    <activity
+        android:id="@+id/navigation_Camera"
+        android:name="at.fhjoanneum.photo_spots.CameraActivity"
+        android:label="activity_camera"
+        tools:layout="@layout/activity_camera" />
 </navigation>

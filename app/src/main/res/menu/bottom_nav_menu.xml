@@ -3,12 +3,17 @@
 
     <item
         android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:icon="@drawable/ic_baseline_collections_24"
+        android:title="Photo-Spots" />
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
+        android:title="My Photo-Spots" />
+
+    <item
+        android:id="@+id/navigation_Camera"
+        android:icon="@drawable/ic_baseline_add_location_alt_24"
+        android:title="Add Spot" />
 
     <item
         android:id="@+id/navigation_map"
