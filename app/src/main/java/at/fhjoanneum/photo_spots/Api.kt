@@ -38,6 +38,15 @@ interface ApiService {
     @GET("api/account/userinfo")
     fun getUserInfo(@Header("Authorization") token: String):Call<Unit>
 
+    @GET("api/account/username")
+    fun getUserName(@Header("Authorization") token: String):Call<String>
+
+    @PUT("api/account/username")
+    fun putUserName(@Body username: ChangeUserName, @Header("Authorization") token: String):Call<Unit>
+
+    @POST("API/Account/ChangePassword")
+    fun changePassword(@Body changePasswordData: ChangePasswordModel,@Header("Authorization") token: String):Call<Unit>
+
     //Photos
     @POST("/API/Photos")
     fun uploadPost(@Body uploadPostModel: UploadPostModel,@Header("Authorization") token: String):Call<Unit>

@@ -11,13 +11,15 @@
         <entry key="..\:/02_Repositorys/Androind-Studio/photospots/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/02_Repositorys/Androind-Studio/photospots/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/02_Repositorys/Androind-Studio/photospots/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
-        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_maps.xml" value="0.25" />
-        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_view_location.xml" value="0.5" />
-        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
-        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/fragment_map.xml" value="0.25" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_view_location.xml" value="0.33" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots/app/src/main/res/layout/activity_register.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/activity_change_password.xml" value="0.264" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/activity_register.xml" value="0.13020833333333334" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/activity_settings.xml" value="0.2" />
+        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/menu/header_menu.xml" value="0.13177083333333334" />
       </map>
     </option>
   </component>

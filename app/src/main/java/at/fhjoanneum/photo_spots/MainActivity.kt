@@ -10,10 +10,12 @@ import android.view.MenuItem
 import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import at.fhjoanneum.photo_spots.SettingsActivity.Companion.DARKMODE
 import at.fhjoanneum.photo_spots.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -39,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
+        val sharedPreferences = getSharedPreferences(packageName, Context.MODE_PRIVATE)
+        val darkMode = sharedPreferences.getBoolean(DARKMODE, false)
+        if (darkMode) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+
 
     }
 
@@ -52,8 +59,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.btn_change_password -> {
+               // Toast.makeText(applicationContext, "Change Password", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, ChangePasswordActivity::class.java)
+                startActivity(intent)
+            }
             R.id.btn_settings -> {
-                Toast.makeText(applicationContext, "Settings", Toast.LENGTH_SHORT).show()
+               // Toast.makeText(applicationContext, "Settings", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
             }

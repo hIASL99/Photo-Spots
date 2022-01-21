@@ -4,6 +4,11 @@
     <item
         android:id="@+id/btn_settings"
         android:title="Settings" />
+
+    <item
+        android:id="@+id/btn_change_password"
+        android:title="Change Password" />
+
     <item
         android:id="@+id/btn_logout"
         android:title="Logout" />
