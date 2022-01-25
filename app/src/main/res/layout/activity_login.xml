@@ -10,7 +10,7 @@
         android:id="@+id/login_input_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
@@ -36,31 +36,33 @@
 
     <Button
         android:id="@+id/login_btn_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="186dp"
+        android:layout_height="122dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_new_button2"
         android:text="Login"
         app:iconTint="@color/colour1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_input_password" />
 
-    <Button
-        android:id="@+id/login_btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Register"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_btn_login" />
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="386dp"
+        android:layout_height="185dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/login_txt_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Account?Register here!"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn_login"
+        app:layout_constraintStart_toStartOf="@+id/login_btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_login" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

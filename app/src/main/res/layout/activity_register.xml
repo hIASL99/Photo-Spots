@@ -8,9 +8,10 @@
 
     <Button
         android:id="@+id/register_btn_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_width="186dp"
+        android:layout_height="122dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/ic_new_button2"
         android:text="Register"
         app:layout_constraintEnd_toEndOf="@+id/register_txt_pw_confirm"
         app:layout_constraintStart_toStartOf="@+id/register_txt_pw_confirm"
@@ -24,6 +25,7 @@
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/register_txt_username"
         app:layout_constraintStart_toStartOf="@+id/register_txt_username"
         app:layout_constraintTop_toBottomOf="@+id/register_txt_username" />
@@ -36,6 +38,7 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/register_txt_pw"
         app:layout_constraintStart_toStartOf="@+id/register_txt_pw"
         app:layout_constraintTop_toBottomOf="@+id/register_txt_pw" />
@@ -48,6 +51,7 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -60,6 +64,7 @@
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/register_txt_email"
         app:layout_constraintStart_toStartOf="@+id/register_txt_email"
         app:layout_constraintTop_toBottomOf="@+id/register_txt_email" />
