@@ -8,9 +8,10 @@
 
     <Button
         android:id="@+id/settings_btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="186dp"
+        android:layout_height="122dp"
         android:layout_marginTop="64dp"
+        android:background="@drawable/ic_new_button2"
         android:text="Save"
         app:layout_constraintEnd_toEndOf="@+id/settings_swi_darkmode"
         app:layout_constraintStart_toStartOf="@+id/textView2"
