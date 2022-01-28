@@ -60,12 +60,7 @@ class PostPictureActivity : AppCompatActivity() {
         //val image = findViewById<ImageView>(R.id.viewpic_imageview)
         val imageFile: File = imageUri.toFile()
 
-        //val exifInterface: ExifInterface = ExifInterface(File(imageUri.path).absolutePath)
-        //val longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE)
-        //val latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE)
-        //val test = exifInterface.getAttribute(TAG_DATETIME)
 
-        //Toast.makeText(this, longitude + latitude + test, Toast.LENGTH_SHORT).show()
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         checkLocationPermission()

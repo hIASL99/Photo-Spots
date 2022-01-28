@@ -11,17 +11,20 @@
         <entry key="..\:/02_Repositorys/Androind-Studio/photospots/app/src/main/res/layout/fragment_dashboard.xml" value="0.36666666666666664" />
         <entry key="..\:/02_Repositorys/Androind-Studio/photospots/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
         <entry key="..\:/02_Repositorys/Androind-Studio/photospots/app/src/main/res/layout/fragment_notifications.xml" value="0.36666666666666664" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout-land/activity_camera.xml" value="0.22" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_camera.xml" value="0.22" />
         <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_maps.xml" value="0.25" />
-        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_view_location.xml" value="0.5" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_post_picture.xml" value="0.33" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/activity_view_location.xml" value="0.33" />
         <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/fragment_dashboard.xml" value="0.20520833333333333" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/layout/fragment_map.xml" value="0.25" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19427083333333334" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22135416666666666" />
+        <entry key="..\:/IMA/Sem3/MAD/Photo-Spots/Photo-Spots-main/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22135416666666666" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots/app/src/main/res/layout/activity_login.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots/app/src/main/res/layout/activity_register.xml" value="0.20520833333333333" />
         <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20520833333333333" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/activity_change_password.xml" value="0.109375" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/fragment_home.xml" value="0.1" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/layout/test.xml" value="0.109375" />
-        <entry key="..\:/Users/PC/AndroidStudioProjects/Photo-Spots1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.10520833333333333" />
       </map>
     </option>
   </component>

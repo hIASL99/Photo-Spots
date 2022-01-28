@@ -11,9 +11,12 @@
 
         <ImageView
             android:id="@+id/viewpic_imageview"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -47,6 +50,25 @@
             app:layout_constraintTop_toBottomOf="@+id/viewpic_imageview" />
 
         <TextView
+            android:id="@+id/postpic_textview_label_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/viewpic_text_name"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_text_name"
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_text_name" />
+
+        <RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/postpic_textview_label_rating"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/postpic_textview_label_rating"
+            app:layout_constraintTop_toTopOf="@+id/postpic_textview_label_rating" />
+
+        <TextView
             android:id="@+id/viewpic_text_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +87,7 @@
             android:text="Address"
             app:layout_constraintEnd_toEndOf="@+id/viewpic_text_name"
             app:layout_constraintStart_toStartOf="@+id/viewpic_text_name"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_text_name" />
+            app:layout_constraintTop_toBottomOf="@+id/postpic_textview_label_rating" />
 
         <TextView
             android:id="@+id/viewpic_textview_address"
