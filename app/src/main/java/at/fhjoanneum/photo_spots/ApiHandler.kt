@@ -196,4 +196,28 @@ fun getUserInfo (context: Context, success: () -> Unit, error: (errorMessage: St
     })
 }
 
+fun getCategories (context: Context, success: (categories: List<String>) -> Unit, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.getCategories(token) .enqueue(object:
+        Callback<List<CategoryModel>> {
+        override fun onFailure(call: Call<List<CategoryModel>>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<List<CategoryModel>>, response: Response<List<CategoryModel>>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                val returnValue = mutableListOf<String>()
+                for (category in responseBody) {
+                    returnValue.add(category.Title)
+                }
+                success(returnValue)
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}
 

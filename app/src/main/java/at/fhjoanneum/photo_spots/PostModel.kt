@@ -98,3 +98,6 @@ class PostModel(val Id:Int,
 
 }
 
+@JsonClass(generateAdapter = true)
+class CategoryModel(val Title:String) { }
+

@@ -60,5 +60,8 @@ interface ApiService {
 
     @GET("Api/photos/myPhotos")
     fun getMyPhotos(@Header("Authorization") token: String):Call<List<PostModel>>
+
+    @GET("Api/category")
+    fun getCategories(@Header("Authorization") token: String):Call<List<CategoryModel>>
 }
 
