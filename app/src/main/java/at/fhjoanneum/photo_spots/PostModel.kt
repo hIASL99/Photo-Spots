@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 import java.util.*
 
 @JsonClass(generateAdapter = true)
-class UploadPostModel(val Title:String, var Photo:String, val Description:String, val Location:String, val LocationLongitude:Double, val LocationLatitude:Double, val LocationAltitude:Double) {
+class UploadPostModel(val Title:String, var Photo:String, val Description:String, val Categories: List<String>, val Location:String, val LocationLongitude:Double, val LocationLatitude:Double, val LocationAltitude:Double) {
 }
 @JsonClass(generateAdapter = true)
 class UploadPostModel2(val id: String, val title: String, val rating: Float, val description: String, val gpsData: GpsDataModel,
@@ -48,7 +48,6 @@ class UploadPostModel2(val id: String, val title: String, val rating: Float, val
 
 
     }
-
 }
 @JsonClass(generateAdapter = true)
 class GpsDataModel (val Altitude: Double, val Latitude: Double, val Longitude: Double, val Address: String)
