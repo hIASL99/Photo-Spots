@@ -34,7 +34,7 @@ import okhttp3.MultipartBody
 class PostPictureActivity : AppCompatActivity() {
 
     private var categories = mutableListOf<String>()
-    private val suggestions = listOf("Church", "Indoor", "Sight")
+    private var suggestions = listOf<String>()
     private var photoLongitude:Double = 0.0
     private var photoLatitude:Double = 0.0
     private var  photoAltitude:Double = 0.0
@@ -46,6 +46,7 @@ class PostPictureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_picture)
 
+        getSuggestions()
         val imageUriString: String = intent.getStringExtra(CameraActivity.IMAGE_URI).toString()
         //Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
         val imageUri: Uri = imageUriString.toUri()
@@ -91,13 +92,7 @@ class PostPictureActivity : AppCompatActivity() {
         }
 
         // auto fill-in for categories
-        val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, suggestions)
-        editCategories.setAdapter(adapter)
 
-        findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
-            addCategory()
-        }
 
 
     }
@@ -266,5 +261,26 @@ class PostPictureActivity : AppCompatActivity() {
                 Toast.makeText(this, "Location Service Not available!!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    fun getSuggestions() {
+        getCategories(this,
+            success = {
+                // handle success
+                // TODO: better solution?
+                suggestions = it
+                val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
+                val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, it)
+                editCategories.setAdapter(adapter)
+
+                findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
+                    addCategory()
+                }
+
+            },
+            error = {
+                // handle error
+                Log.e("Category",it)
+            })
     }
 }
