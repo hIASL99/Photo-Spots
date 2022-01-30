@@ -14,17 +14,17 @@
         android:background="@drawable/camera_lens1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/camera_preview" />
+        app:layout_constraintTop_toTopOf="@+id/camera_preview" />
 
     <Button
         android:id="@+id/camera_button_switch"
         android:layout_width="51dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/ic_switch_camera_new"
-        app:layout_constraintBottom_toBottomOf="@+id/camera_button_camera"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/camera_button_camera" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/camera_button_flash"
@@ -48,5 +48,7 @@
         android:id="@+id/camera_image_boundary"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/picture_boundary" />
 </androidx.constraintlayout.widget.ConstraintLayout>

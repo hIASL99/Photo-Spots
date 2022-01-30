@@ -35,7 +35,6 @@ class ViewLocationActivity : AppCompatActivity() {
 
 
         if (idFromMap != null) {
-            Toast.makeText(this, idFromMap.toString(), Toast.LENGTH_LONG).show()
             PostRepository.getphotoList(this,
                 success = {
                     location = it.filter {it.Id == idFromMap}[0]
@@ -62,7 +61,7 @@ class ViewLocationActivity : AppCompatActivity() {
                 }
             )
         } else if (idFromDashboard != null) {
-            //Toast.makeText(this, idFromDashboard.toString(), Toast.LENGTH_LONG).show()
+
             PostRepository.getphotoList(this,
                 success = {
                     location = it.filter {it.Id == idFromDashboard}[0]
@@ -176,6 +175,7 @@ class ViewLocationActivity : AppCompatActivity() {
     }
 
     fun setupComments(location: UploadPostModel2) {
+        findViewById<EditText>(R.id.viewloc_edittext_comment).isSelected = false
         findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
             val commentText: String = findViewById<EditText>(R.id.viewloc_edittext_comment).text.toString()
 
