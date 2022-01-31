@@ -63,5 +63,12 @@ interface ApiService {
 
     @GET("Api/category")
     fun getCategories(@Header("Authorization") token: String):Call<List<CategoryModel>>
+
+    //rating
+    @POST("/API/Rating")
+    fun uploadRating(@Body uploadRatingModel: UploadRatingModel,@Header("Authorization") token: String):Call<List<Rating>>
+
+    @DELETE("/API/Rating/{id}/")
+    fun deleteRating(@Path("id") id: String,@Header("Authorization") token: String):Call<List<Rating>>
 }
 
