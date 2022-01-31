@@ -29,6 +29,7 @@ class DashboardFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    // needed for searchView
     private var postList = listOf<PostModel>()
     private var filteredList = mutableListOf<PostModel>()
 
@@ -57,15 +58,15 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity?.isDestroyed == false && this.isAdded && view != null){
-            updateList(view?.context!!)
+            updateList(view.context!!)
 
-
-            val recyclerView = view?.findViewById<RecyclerView>(R.id.dashboard_recyclerview)
-            recyclerView?.layoutManager = LinearLayoutManager(view?.context)
+            val recyclerView = view.findViewById<RecyclerView>(R.id.dashboard_recyclerview)
+            recyclerView?.layoutManager = LinearLayoutManager(view.context)
             recyclerView?.adapter = postAdapter
         }
 
-        var searchView = view?.findViewById<SearchView>(R.id.dashboard_search)
+        // searching for categories or title
+        val searchView = view.findViewById<SearchView>(R.id.dashboard_search)
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query:String?): Boolean {
@@ -75,28 +76,26 @@ class DashboardFragment : Fragment() {
             override fun onQueryTextChange(newText: String?): Boolean {
                 if(newText!!.isNotEmpty()){
                     filteredList.clear()
-                    var search = newText.toLowerCase(Locale.getDefault())
+                    val search = newText.lowercase(Locale.getDefault()) // instead of lowercase() also toLowerCase(Locale) possible
 
                     for (post in postList) {
-                        // TODO: currently one can't search by category because it doesn't get saved for the post
-                        /*
-                        for (category in post.Title) {
-                            if (category.toLowerCase(Locale.getDefault()).contains(search)) {
-                                filteredList.add(post)
-                            }
-                        }*/
-                        if (post.Title.toLowerCase(Locale.getDefault()).contains(search)) {
+                        // TODO: test if this works properly
+                        if (post.Title.lowercase(Locale.getDefault()).contains(search)) {
                             filteredList.add(post)
+                        } else {
+                            for (category in post.Categories) {
+                                if (category.lowercase(Locale.getDefault()).contains(search)) {
+                                    filteredList.add(post)
+                                }
+                            }
                         }
                     }
                     postAdapter.updateList(filteredList)
-                }
-                else {
+                } else {
                     postAdapter.updateList(postList)
                 }
                 return true
             }
-
         })
     }
 
