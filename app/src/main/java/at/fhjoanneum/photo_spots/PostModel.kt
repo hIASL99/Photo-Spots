@@ -47,7 +47,7 @@ class PostModel(val Id:Int,
         }
         return (result / Rating.size) * 5
     }
-    fun addPostRating(rating: Boolean, context: Context):Boolean{
+    fun addPostRating(rating: Boolean, context: Context){
 
         val db = LoginModelDatabase.getDatabase(context)
         val username = db.loginModelDao.getUserName().toString()
@@ -59,11 +59,11 @@ class PostModel(val Id:Int,
             Rating.add(Rating(username, rating))
             result = true
         } else if (Rating.filter { it.UserId == username && it.Rating != rating }.isNotEmpty()) {
-            Rating.remove(Rating(username, !rating))
+            Rating.removeAll { e -> e.UserId == username }
             Rating.add(Rating(username, rating))
             result = true
         } else if (Rating.filter {it.UserId == username && it.Rating == rating }.isNotEmpty()) {
-            Rating.remove(Rating(username, rating))
+            Rating.removeAll { e -> e.UserId == username }
             result = false
         }
 
@@ -78,20 +78,29 @@ class PostModel(val Id:Int,
                     Log.e("API",it)
                 }
             )
-        }else{
-            deleteRating(context,ratingToUpload,
+        }else {
+            deleteRating(context, ratingToUpload,
                 success = {
                     // handle success
                     Rating = it.toMutableList()
                 },
                 error = {
                     // handle error
-                    Log.e("API",it)
+                    Log.e("API", it)
                 }
             )
         }
+    }
+    fun hasRated(context: Context):Boolean?{
+        val db = LoginModelDatabase.getDatabase(context)
+        val username = db.loginModelDao.getUserName().toString()
 
-        return result
+        if(Rating.filter { it.UserId == username }.isEmpty()) {
+            return null
+        } else if (Rating.filter { it.UserId == username }.isNotEmpty()) {
+            return Rating.filter { it.UserId == username }.first().Rating
+        }
+        return false
     }
     fun addComment(comment:String){
         //TODO implementation

@@ -125,7 +125,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:text="Categories"
+            android:text="Categories:"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
 
@@ -133,30 +134,12 @@
             android:id="@+id/viewloc_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="cat1"
-            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_label_categories"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_categories"
+            android:text="Category"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_share"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintWidth_max="110dp" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_cat2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="cat2"
-            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_cat1"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_cat1"
-            app:layout_constraintWidth_max="110dp" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_morecat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="and more..."
-            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_cat2"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_cat2" />
 
         <EditText
             android:id="@+id/viewloc_edittext_comment"
@@ -164,14 +147,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="Comment..."
             android:inputType="textPersonName"
             android:selectAllOnFocus="false"
             android:singleLine="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_button_share" />
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_cat1" />
 
         <Button
             android:id="@+id/viewloc_button_commentadd"

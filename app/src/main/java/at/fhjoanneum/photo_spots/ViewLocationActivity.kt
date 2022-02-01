@@ -1,5 +1,6 @@
 package at.fhjoanneum.photo_spots
 
+import android.R.attr
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,6 +9,18 @@ import android.widget.*
 import at.fhjoanneum.photo_spots.ui.dashboard.DashboardFragment
 import at.fhjoanneum.photo_spots.ui.map.MapFragment
 import com.bumptech.glide.Glide
+import androidx.core.graphics.drawable.DrawableCompat
+
+import android.R.attr.button
+
+import android.graphics.drawable.Drawable
+import android.content.res.ColorStateList
+
+
+
+
+
+
 
 /*
 
@@ -26,11 +39,6 @@ class ViewLocationActivity : AppCompatActivity() {
 
         val idFromMap = intent.getStringExtra(MapFragment.TAG_ID)?.toInt()
         val idFromDashboard = intent.getStringExtra(DashboardFragment.TAG_ID)?.toInt()
-        //Toast.makeText(this, "idFromMap: ${idFromMap.toString()}, idFromDashboard: ${idFromDashboard.toString()}", Toast.LENGTH_LONG).show()
-
-
-
-
 
         if (idFromMap != null) {
             Toast.makeText(this, idFromMap.toString(), Toast.LENGTH_LONG).show()
@@ -41,23 +49,6 @@ class ViewLocationActivity : AppCompatActivity() {
                         location = it.find { it.Id == idFromMap}!!
                         setupPost(location)
                     }
-
-                    //Toast.makeText(this, location.Title, Toast.LENGTH_LONG).show()
-                    //val post = location
-                        /*DetailPostModel(location.Id.toString(),
-                        location.Title, location.getRating(),
-                        location.Description,
-                        GpsDataModel(location.LocationAltitude,
-                            location.LocationLatitude,
-                            location.LocationLongitude,
-                            location.Location),
-                        location.Categories,
-                        location.Photo,
-                        mutableListOf<PostComment>(),
-                        mutableListOf<Pair<String, Boolean>>(),
-                        location.UserName
-                    )*/
-
                 },
                 error = {
                     Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
@@ -73,23 +64,6 @@ class ViewLocationActivity : AppCompatActivity() {
                         location = it.find { it.Id == idFromDashboard}!!
                         setupPost(location)
                     }
-
-                    /*location = it.filter {it.Id == idFromDashboard}[0]
-                    //Toast.makeText(this, location.Title, Toast.LENGTH_LONG).show()
-                    val post = DetailPostModel(location.Id.toString(),
-                        location.Title, location.getRating(),
-                        location.Description,
-                        GpsDataModel(location.LocationAltitude,
-                            location.LocationLatitude,
-                            location.LocationLongitude,
-                            location.Location),
-                        location.Categories,
-                        location.Photo,
-                        mutableListOf<PostComment>(),
-                        mutableListOf<Pair<String, Boolean>>(),
-                        location.UserName
-                    )
-                    setupPost(post)*/
                 },
                 error = {
                     Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
@@ -105,29 +79,12 @@ class ViewLocationActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.viewloc_text_title).setText(location.Title)
         findViewById<TextView>(R.id.viewloc_textview_address).setText(location.getGPSData().Address)
         findViewById<RatingBar>(R.id.viewloc_ratingbar_rating).rating = location.getRating()
-        when {
-            location.Categories.size == 0 -> {
-                findViewById<TextView>(R.id.viewloc_textview_cat1).setText("(no categories inserted)")
-                findViewById<TextView>(R.id.viewloc_textview_cat2).setText("")
-                findViewById<TextView>(R.id.viewloc_textview_morecat).setText("")
-            }
-            location.Categories.size == 1 -> {
-                findViewById<TextView>(R.id.viewloc_textview_cat1).setText(location.Categories[0])
-                findViewById<TextView>(R.id.viewloc_textview_cat2).setText("")
-                findViewById<TextView>(R.id.viewloc_textview_morecat).setText("")
-            }
-            location.Categories.size == 2 -> {
-                findViewById<TextView>(R.id.viewloc_textview_cat1).setText(location.Categories[0])
-                findViewById<TextView>(R.id.viewloc_textview_cat2).setText(location.Categories[1])
-                findViewById<TextView>(R.id.viewloc_textview_morecat).setText("")
-            }
-            location.Categories.size > 2 -> {
-                findViewById<TextView>(R.id.viewloc_textview_cat1).setText(location.Categories[0])
-                findViewById<TextView>(R.id.viewloc_textview_cat2).setText(location.Categories[1])
-                findViewById<TextView>(R.id.viewloc_textview_morecat).setText("and more...")
-            }
-
+        findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.Rating.size.toString()
+        var catText = ""
+        for (cat in location.Categories){
+            catText = catText + "\n" + cat
         }
+        findViewById<TextView>(R.id.viewloc_textview_cat1).text = catText
         val image = location.Photo
         Glide
             .with(this)
@@ -135,28 +92,28 @@ class ViewLocationActivity : AppCompatActivity() {
             .into(findViewById(R.id.viewloc_imageview))
 
         //setupComments(location)
-        findViewById<Button>(R.id.viewloc_button_like).setOnClickListener() {
-
-            if (location.addPostRating(true,this)) {
-                findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.getRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_postrating).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
-            } else {
-                findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.getRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_postrating).setTextColor(getResources().getColor(R.color.design_default_color_primary))
+        val userHasRated = location.hasRated(this)
+        if(userHasRated != null){
+            if(userHasRated){
+                findViewById<Button>(R.id.viewloc_button_like).backgroundTintList = getColorStateList(android.R.color.holo_purple)
+                findViewById<Button>(R.id.viewloc_button_dislike).backgroundTintList = getColorStateList(android.R.color.background_dark)
+            }else{
+                findViewById<Button>(R.id.viewloc_button_dislike).backgroundTintList = getColorStateList(android.R.color.holo_purple)
+                findViewById<Button>(R.id.viewloc_button_like).backgroundTintList = getColorStateList(android.R.color.background_dark)
             }
+        }else{
+            findViewById<Button>(R.id.viewloc_button_like).backgroundTintList = getColorStateList(android.R.color.background_dark)
+            findViewById<Button>(R.id.viewloc_button_dislike).backgroundTintList = getColorStateList(android.R.color.background_dark)
+        }
 
+        findViewById<Button>(R.id.viewloc_button_like).setOnClickListener() {
+            location.addPostRating(true,this)
+            setupPost(location)
         }
         findViewById<Button>(R.id.viewloc_button_dislike).setOnClickListener() {
-            if (location.addPostRating(false, this)) {
-                findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.getRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_postrating).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
-            } else {
-                findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.getRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_postrating).setTextColor(getResources().getColor(R.color.design_default_color_primary))
-            }
-
+            location.addPostRating(false,this)
+            setupPost(location)
         }
-        findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.getRating().toString()
 
         if (location.Rating.filter { it.UserId == "username" }.isNotEmpty()) {
             findViewById<TextView>(R.id.viewloc_textview_postrating).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
