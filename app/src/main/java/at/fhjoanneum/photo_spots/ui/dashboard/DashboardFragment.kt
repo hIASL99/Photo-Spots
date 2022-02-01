@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import at.fhjoanneum.photo_spots.*
 import at.fhjoanneum.photo_spots.databinding.FragmentDashboardBinding
+import org.w3c.dom.Text
+import java.util.*
 
 class DashboardFragment : Fragment() {
 
@@ -25,6 +28,10 @@ class DashboardFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    // needed for searchView
+    private var postList = listOf<PostModel>()
+    private var filteredList = mutableListOf<PostModel>()
 
     val postAdapter = PostAdapter() {
 
@@ -51,25 +58,59 @@ class DashboardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity?.isDestroyed == false && this.isAdded && view != null){
-            updateList(view?.context!!)
+            updateList(view.context!!)
 
-
-            val recyclerView = view?.findViewById<RecyclerView>(R.id.dashboard_recyclerview)
-            recyclerView?.layoutManager = LinearLayoutManager(view?.context)
+            val recyclerView = view.findViewById<RecyclerView>(R.id.dashboard_recyclerview)
+            recyclerView?.layoutManager = LinearLayoutManager(view.context)
             recyclerView?.adapter = postAdapter
         }
 
+        // searching for categories or title
+        val searchView = view.findViewById<SearchView>(R.id.dashboard_search)
+        searchView.setOnClickListener () { searchView.isIconified = false }
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query:String?): Boolean {
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if(newText!!.isNotEmpty()){
+                    filteredList.clear()
+                    val search = newText.lowercase(Locale.getDefault()) // instead of lowercase() also toLowerCase(Locale) possible
+
+                    for (post in postList) {
+                        if (post.Title.lowercase(Locale.getDefault()).contains(search)) {
+                            filteredList.add(post)
+                        } else {
+                            for (category in post.Categories) {
+                                if (category.lowercase(Locale.getDefault()).contains(search)) {
+                                    filteredList.add(post)
+                                }
+                            }
+                        }
+                    }
+                    postAdapter.updateList(filteredList)
+                } else {
+                    postAdapter.updateList(postList)
+                }
+                return true
+            }
+        })
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    fun updateList(context: Context){
+
+    private fun updateList(context: Context){
         PostRepository.getphotoList(context,
             success = {
                 // handle success
                 postAdapter.updateList(it)
+                postList = it
             },
             error = {
                 // handle error
