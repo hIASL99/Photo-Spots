@@ -17,15 +17,6 @@ import android.graphics.drawable.Drawable
 import android.content.res.ColorStateList
 
 
-
-
-
-
-
-/*
-
- */
-
 class ViewLocationActivity : AppCompatActivity() {
 
     lateinit var location: PostModel
@@ -91,7 +82,7 @@ class ViewLocationActivity : AppCompatActivity() {
             .load(image)
             .into(findViewById(R.id.viewloc_imageview))
 
-        //setupComments(location)
+        setupComments(location)
         val userHasRated = location.hasRated(this)
         if(userHasRated != null){
             if(userHasRated){
@@ -139,123 +130,15 @@ class ViewLocationActivity : AppCompatActivity() {
 
 
     }
+    fun setupComments(location: PostModel){
+        val comments = location.getComments()
+        findViewById<TextView>(R.id.viewloc_textview_topcomment_username1).text = comments
 
-    fun setupComments(location: PostModel) {
         findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
-            val commentText: String = findViewById<EditText>(R.id.viewloc_edittext_comment).text.toString()
-
-            location.addComment(commentText)
-            val topComment1 = location.getTopComments()[1]
-            val topComment2 = location.getTopComments()[0]
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username1).text = topComment1.username
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username2).text = topComment2.username
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment1).text = topComment1.content
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment2).text = topComment2.content
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = topComment2.getCommentRating().toString()
-            if (topComment2.username != "") {
-                findViewById<Button>(R.id.viewloc_button_topcomment_plus1).visibility = View.VISIBLE
-                findViewById<Button>(R.id.viewloc_button_topcomment_minus1).visibility = View.VISIBLE
-                findViewById<Button>(R.id.viewloc_button_topcomment_plus2).visibility = View.VISIBLE
-                findViewById<Button>(R.id.viewloc_button_topcomment_minus2).visibility = View.VISIBLE
-
-            } else {
-                findViewById<Button>(R.id.viewloc_button_topcomment_plus1).visibility = View.VISIBLE
-                findViewById<Button>(R.id.viewloc_button_topcomment_minus1).visibility = View.VISIBLE
-            }
-            findViewById<EditText>(R.id.viewloc_edittext_comment).setText("")
+            val commentToAdd = findViewById<EditText>(R.id.viewloc_edittext_comment).text.toString()
+            location.addComment(commentToAdd,this)
+            setupComments(location)
         }
-
-        val topComment1 = location.getTopComments()[1]
-        val topComment2 = location.getTopComments()[0]
-
-
-
-        if (topComment2.username != "") {
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username1).text = topComment1.username
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username2).text = topComment2.username
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment1).text = topComment1.content
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment2).text = topComment2.content
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = topComment2.getCommentRating().toString()
-        } else if (topComment1.username != "") {
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username1).text = topComment1.username
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username2).text = topComment2.username
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment1).text = topComment1.content
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment2).text = topComment2.content
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = ""
-
-            findViewById<Button>(R.id.viewloc_button_topcomment_plus2).visibility = View.GONE
-            findViewById<Button>(R.id.viewloc_button_topcomment_minus2).visibility = View.GONE
-        } else {
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username1).text = topComment1.username
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_username2).text = topComment2.username
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment1).text = topComment1.content
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_comment2).text = topComment2.content
-
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = ""
-            findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = ""
-
-            findViewById<Button>(R.id.viewloc_button_topcomment_plus1).visibility = View.GONE
-            findViewById<Button>(R.id.viewloc_button_topcomment_minus1).visibility = View.GONE
-            findViewById<Button>(R.id.viewloc_button_topcomment_plus2).visibility = View.GONE
-            findViewById<Button>(R.id.viewloc_button_topcomment_minus2).visibility = View.GONE
-
-
-        }
-
-        findViewById<Button>(R.id.viewloc_button_topcomment_plus1).setOnClickListener() {
-            if (topComment1.addPostCommentRating("username", true)) {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
-
-            } else {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).setTextColor(getResources().getColor(R.color.design_default_color_primary))
-            }
-        }
-
-        findViewById<Button>(R.id.viewloc_button_topcomment_minus1).setOnClickListener() {
-            if (topComment1.addPostCommentRating("username", false)) {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
-
-            } else {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).text = topComment1.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating1).setTextColor(getResources().getColor(R.color.design_default_color_primary))
-            }
-        }
-
-        findViewById<Button>(R.id.viewloc_button_topcomment_plus2).setOnClickListener() {
-            if (topComment2.addPostCommentRating("username", true)) {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = topComment2.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
-
-            } else {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = topComment2.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).setTextColor(getResources().getColor(R.color.design_default_color_primary))
-            }
-        }
-
-        findViewById<Button>(R.id.viewloc_button_topcomment_minus2).setOnClickListener() {
-            if (topComment2.addPostCommentRating("username", false)) {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = topComment2.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).setTextColor(getResources().getColor(R.color.design_default_color_secondary))
-
-            } else {
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).text = topComment2.getCommentRating().toString()
-                findViewById<TextView>(R.id.viewloc_textview_topcomment_rating2).setTextColor(getResources().getColor(R.color.design_default_color_primary))
-            }
-        }
-
 
     }
 }

@@ -260,3 +260,23 @@ fun deleteRating (context: Context,rating:UploadRatingModel, success: (ratings: 
 
     })
 }
+fun postComment (context: Context,comment:UploadPostComment, success: (ratings: List<PostComment>) -> Unit, error: (errorMessage: String) -> Unit){
+    val token = getLoginToken(context)
+    Api.retrofitService.uploadComment(comment,token) .enqueue(object:
+        Callback<List<PostComment>> {
+        override fun onFailure(call: Call<List<PostComment>>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<List<PostComment>>, response: Response<List<PostComment>>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success(responseBody)
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}

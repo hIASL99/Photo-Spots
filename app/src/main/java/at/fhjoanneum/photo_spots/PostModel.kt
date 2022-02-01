@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import com.squareup.moshi.JsonClass
+import org.w3c.dom.Comment
 import java.util.*
 
 @JsonClass(generateAdapter = true)
@@ -28,8 +29,8 @@ class PostModel(val Id:Int,
                 val LocationAltitude:Double,
                 val UserName:String,
                 val Categories : List<String>,
-                var Rating: MutableList<Rating>
-                //val comments: MutableList<PostComment>
+                var Rating: MutableList<Rating>,
+                var Comments: MutableList<PostComment>
 
 ) {
     fun getGPSData():GpsDataModel{
@@ -102,87 +103,41 @@ class PostModel(val Id:Int,
         }
         return false
     }
-    fun addComment(comment:String){
-        //TODO implementation
-
+    fun getComments():String{
+        var comments = ""
+        for (comment in Comments) {
+            comments = comments + comment.UserName + ":\n" + comment.Text + "\n\n"
+        }
+        return comments
     }
-    fun getTopComments():List<PostComment>{
-        return listOf<PostComment>()
+    fun addComment(comment:String, context: Context){
+
+        val db = LoginModelDatabase.getDatabase(context)
+        val username = db.loginModelDao.getUserName().toString()
+        Comments.add(PostComment(username, comment))
+
+        postComment(context,UploadPostComment(Text = comment, PostId = Id, UserId = "Insert User Id"),
+            success = {
+                // handle success
+                Comments = it.toMutableList()
+            },
+            error = {
+                // handle error
+                Log.e("API",it)
+            }
+        )
+
     }
 }
-
-/*
-@JsonClass(generateAdapter = true)
-class DetailPostModel(val id: String, val title: String, val rating: Float, val description: String, val gpsData: GpsDataModel,
-                      val categories: List<String>, val image: String, val comments: MutableList<PostComment>,
-                      val postRating: MutableList<Pair<String, Boolean>>, val username: String) {
-
-    fun addComment(username: String, comment: String) {
-        comments.add(PostComment(username, comment, mutableListOf<Pair<String, Boolean>>()))
-    }
-
-    fun addPostRating(username: String, rating: Boolean) :Boolean {
-        if(postRating.filter { it.first == username }.isEmpty()) {
-            postRating.add(Pair(username, rating))
-            return true
-        } else if (postRating.filter { it.first == username && it.second != rating }.isNotEmpty()) {
-            postRating.remove(Pair(username, !rating))
-            postRating.add(Pair(username, rating))
-            return true
-        } else if (postRating.filter {it.first == username && it.second == rating }.isNotEmpty()) {
-            postRating.remove(Pair(username, rating))
-            return false
-        }
-        return false
-    }
-
-    fun getPostRating() :Int {
-        val numLike = postRating.map {it.second}.filter {it}.size
-        val numDislike = postRating.map {it.second}.filter {!it}.size
-        return  numLike - numDislike
-    }
-
-    fun getTopComments() :List<PostComment> {
-        val emptyList = mutableListOf<PostComment>(PostComment("", "", mutableListOf()), PostComment("", "", mutableListOf()))
-        if (comments.isEmpty()) {
-            return emptyList
-        } else if (comments.size == 1) {
-            return mutableListOf(PostComment("", "", mutableListOf()), comments[0])
-        }
-        return comments.sortedBy {it.getCommentRating()}.takeLast(2)
-
-
-    }
-}*/
 @JsonClass(generateAdapter = true)
 class GpsDataModel (val Altitude: Double, val Latitude: Double, val Longitude: Double, val Address: String)
 
 @JsonClass(generateAdapter = true)
-class PostComment (val username: String, val content: String, val postCommentRating: MutableList<Pair<String, Boolean>>) {
-    fun addPostCommentRating(otherUsername: String, rating: Boolean) :Boolean {
-        if(postCommentRating.filter { it.first == otherUsername }.isEmpty()) {
-            postCommentRating.add(Pair(otherUsername, rating))
-            return true
-        } else if (postCommentRating.filter { it.first == otherUsername && it.second != rating }.isNotEmpty()) {
-            postCommentRating.remove(Pair(otherUsername, !rating))
-            postCommentRating.add(Pair(otherUsername, rating))
-            return true
-        } else if (postCommentRating.filter {it.first == otherUsername && it.second == rating }.isNotEmpty()) {
-            postCommentRating.remove(Pair(otherUsername, rating))
-            return false
-        }
-        return false
+class PostComment (val UserName: String, val Text: String) {
     }
-
-    fun getCommentRating() :Int {
-        val numLike = postCommentRating.map {it.second}.filter {it}.size
-        val numDislike = postCommentRating.map {it.second}.filter {!it}.size
-        return  numLike - numDislike
-    }
-
-
+@JsonClass(generateAdapter = true)
+class UploadPostComment (val UserId: String, val Text: String,val PostId: Int) {
 }
-
 
 
 @JsonClass(generateAdapter = true)

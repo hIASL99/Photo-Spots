@@ -70,5 +70,9 @@ interface ApiService {
 
     @DELETE("/API/Rating/{id}/")
     fun deleteRating(@Path("id") id: String,@Header("Authorization") token: String):Call<List<Rating>>
+
+    //Comments
+    @POST("/API/Comment")
+    fun uploadComment(@Body comment: UploadPostComment,@Header("Authorization") token: String):Call<List<PostComment>>
 }
 

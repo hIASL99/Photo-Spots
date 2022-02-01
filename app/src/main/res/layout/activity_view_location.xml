@@ -169,104 +169,16 @@
 
         <TextView
             android:id="@+id/viewloc_textview_topcomment_username1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
             android:text="username"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_edittext_comment" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_topcomment_comment1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="comment1"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_textview_topcomment_rating1"
-            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_topcomment_username1"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_username1" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_topcomment_rating1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="10"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_topcomment_username1"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_plus1"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_username1" />
-
-        <Button
-            android:id="@+id/viewloc_button_topcomment_plus1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="2dp"
-            android:text="+"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_topcomment_rating1"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_minus1"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_rating1" />
-
-        <Button
-            android:id="@+id/viewloc_button_topcomment_minus1"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="4dp"
-            android:text="-"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_topcomment_plus1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus1" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_topcomment_username2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="username2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_topcomment_comment1" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_topcomment_comment2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="comment2"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_textview_topcomment_rating2"
-            app:layout_constraintStart_toStartOf="@+id/viewloc_textview_topcomment_comment1"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_username2" />
-
-        <TextView
-            android:id="@+id/viewloc_textview_topcomment_rating2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:text="100"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_plus2"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_username2" />
-
-        <Button
-            android:id="@+id/viewloc_button_topcomment_plus2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="2dp"
-            android:text="+"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_topcomment_rating2"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_topcomment_minus2"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_topcomment_rating2" />
-
-        <Button
-            android:id="@+id/viewloc_button_topcomment_minus2"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginEnd="4dp"
-            android:text="-"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_topcomment_plus2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_button_topcomment_plus2" />
 
         <Button
             android:id="@+id/viewloc_button_share"
