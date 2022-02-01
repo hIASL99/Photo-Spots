@@ -67,6 +67,8 @@ class DashboardFragment : Fragment() {
 
         // searching for categories or title
         val searchView = view.findViewById<SearchView>(R.id.dashboard_search)
+        searchView.setOnClickListener () { searchView.isIconified = false }
+
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query:String?): Boolean {
@@ -79,7 +81,6 @@ class DashboardFragment : Fragment() {
                     val search = newText.lowercase(Locale.getDefault()) // instead of lowercase() also toLowerCase(Locale) possible
 
                     for (post in postList) {
-                        // TODO: test if this works properly
                         if (post.Title.lowercase(Locale.getDefault()).contains(search)) {
                             filteredList.add(post)
                         } else {

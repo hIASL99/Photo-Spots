@@ -11,12 +11,13 @@
         android:id="@+id/dashboard_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:background="@drawable/dashboard_searchbar"
+        android:iconifiedByDefault="true"
         android:queryBackground="@android:color/transparent"
-        android:queryHint="Search for a post title ..." />
+        android:queryHint="Search for post title or category ..." />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dashboard_recyclerview"
