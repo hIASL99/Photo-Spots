@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -38,8 +39,8 @@ class PostViewHolder(itemView: View, val clickListener: (post: PostModel) -> Uni
         itemView.findViewById<TextView>(R.id.item_photo_txt_title).text = post.Title
         itemView.findViewById<TextView>(R.id.item_photo_txt_username).text = post.UserName
         itemView.findViewById<TextView>(R.id.item_photo_txt_address).text = post.Location
-        //itemView.findViewById<TextView>(R.id.item_photo_rating_count).text = post.Rating.toString()
-        //itemView.findViewById<RatingBar>(R.id.item_photo_avg_rating_bar).rating = post.Rating
+        itemView.findViewById<TextView>(R.id.item_photo_rating_count).text = post.Rating.size.toString()
+        itemView.findViewById<RatingBar>(R.id.item_photo_avg_rating_bar).rating = post.getRating()
         val imageView = itemView.findViewById<ImageView>(R.id.item_photo_imageView)
         Glide.with(itemView)
             .load(post.Photo)

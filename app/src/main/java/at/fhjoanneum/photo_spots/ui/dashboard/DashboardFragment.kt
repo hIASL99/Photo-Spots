@@ -55,6 +55,12 @@ class DashboardFragment : Fragment() {
         return root
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (activity?.isDestroyed == false && this.isAdded && view != null) {
+            updateList(requireContext())
+        }
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         if (activity?.isDestroyed == false && this.isAdded && view != null){
