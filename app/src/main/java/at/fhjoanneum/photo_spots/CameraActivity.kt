@@ -8,6 +8,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Rational
+import android.view.Window
 import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
@@ -34,7 +36,6 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
-        //Request Permissions
 
 
 
@@ -72,6 +73,7 @@ class CameraActivity : AppCompatActivity() {
         val imageCapture = imageCapture
         //time-stamped output-file
         val photoFile = File(outputDirectory, java.text.SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis()) + UUID.randomUUID().toString() + ".jpg")
+
         //Create output options object which contains File + metadata
         val outputOptions = OutputFileOptions.Builder(photoFile).build()
         //setup imaeg capture listener, triggered after photo has been taken
@@ -104,8 +106,10 @@ class CameraActivity : AppCompatActivity() {
                 it.setSurfaceProvider(findViewById<PreviewView>(R.id.camera_preview).surfaceProvider)
             }
 
+
             imageCapture = Builder().build()
             imageCapture?.setFlashMode(FLASH_MODE_AUTO)
+            imageCapture?.setCropAspectRatio(Rational(1, 1))
             //select Backcamera as default
             val cameraSelectorFront = CameraSelector.DEFAULT_BACK_CAMERA
 
@@ -175,10 +179,12 @@ class CameraActivity : AppCompatActivity() {
                 it.setSurfaceProvider(findViewById<PreviewView>(R.id.camera_preview).surfaceProvider)
             }
 
-            imageCapture = Builder().build()
+            imageCapture = Builder().setCaptureMode(CAPTURE_MODE_MINIMIZE_LATENCY).build()
             imageCapture?.setFlashMode(FLASH_MODE_OFF)
+            imageCapture?.setCropAspectRatio(Rational(1, 1))
             //select FrontCamera as default
             val cameraSelectorFront = CameraSelector.DEFAULT_FRONT_CAMERA
+
 
             try {
                 //unbind

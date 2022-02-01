@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 
 class LoginActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class LoginActivity : AppCompatActivity() {
 
 
         }
-        findViewById<Button>(R.id.login_btn_register).setOnClickListener {
+        findViewById<TextView>(R.id.login_txt_register).setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }

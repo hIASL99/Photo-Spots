@@ -196,4 +196,67 @@ fun getUserInfo (context: Context, success: () -> Unit, error: (errorMessage: St
     })
 }
 
+fun getCategories (context: Context, success: (categories: List<String>) -> Unit, error: (errorMessage: String) -> Unit) {
+    val token = getLoginToken(context)
+    Api.retrofitService.getCategories(token) .enqueue(object:
+        Callback<List<CategoryModel>> {
+        override fun onFailure(call: Call<List<CategoryModel>>, t: Throwable) {
+            error("The call failed")
+        }
 
+        override fun onResponse(call: Call<List<CategoryModel>>, response: Response<List<CategoryModel>>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                val returnValue = mutableListOf<String>()
+                for (category in responseBody) {
+                    returnValue.add(category.Title)
+                }
+                success(returnValue)
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}
+fun postRating (context: Context,rating:UploadRatingModel, success: (ratings: List<Rating>) -> Unit, error: (errorMessage: String) -> Unit){
+    val token = getLoginToken(context)
+    Api.retrofitService.uploadRating(rating,token) .enqueue(object:
+        Callback<List<Rating>> {
+        override fun onFailure(call: Call<List<Rating>>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<List<Rating>>, response: Response<List<Rating>>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success(responseBody)
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}
+fun deleteRating (context: Context,rating:UploadRatingModel, success: (ratings: List<Rating>) -> Unit, error: (errorMessage: String) -> Unit){
+    val token = getLoginToken(context)
+    Api.retrofitService.deleteRating(rating.PostId.toString(),token) .enqueue(object:
+        Callback<List<Rating>> {
+        override fun onFailure(call: Call<List<Rating>>, t: Throwable) {
+            error("The call failed")
+        }
+
+        override fun onResponse(call: Call<List<Rating>>, response: Response<List<Rating>>) {
+            val responseBody = response.body()
+            if (response.isSuccessful && responseBody != null) {
+                success(responseBody)
+            } else {
+                Log.e("APICALL", response.message())
+                error(response.message().toString())
+            }
+        }
+
+    })
+}

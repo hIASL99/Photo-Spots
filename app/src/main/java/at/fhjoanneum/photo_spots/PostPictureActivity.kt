@@ -5,7 +5,6 @@ import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.*
-import android.media.ExifInterface.*
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,6 +33,8 @@ import okhttp3.MultipartBody
 
 class PostPictureActivity : AppCompatActivity() {
 
+    private var categories = mutableListOf<String>()
+    private var suggestions = listOf<String>()
     private var photoLongitude:Double = 0.0
     private var photoLatitude:Double = 0.0
     private var  photoAltitude:Double = 0.0
@@ -45,6 +46,7 @@ class PostPictureActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_picture)
 
+        getSuggestions()
         val imageUriString: String = intent.getStringExtra(CameraActivity.IMAGE_URI).toString()
         //Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
         val imageUri: Uri = imageUriString.toUri()
@@ -60,12 +62,7 @@ class PostPictureActivity : AppCompatActivity() {
         //val image = findViewById<ImageView>(R.id.viewpic_imageview)
         val imageFile: File = imageUri.toFile()
 
-        //val exifInterface: ExifInterface = ExifInterface(File(imageUri.path).absolutePath)
-        //val longitude = exifInterface.getAttribute(TAG_GPS_LONGITUDE)
-        //val latitude = exifInterface.getAttribute(TAG_GPS_LATITUDE)
-        //val test = exifInterface.getAttribute(TAG_DATETIME)
 
-        //Toast.makeText(this, longitude + latitude + test, Toast.LENGTH_SHORT).show()
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         checkLocationPermission()
@@ -80,7 +77,7 @@ class PostPictureActivity : AppCompatActivity() {
             val body = MultipartBody.Part.createFormData("upload", imageFile.name, reqFile)
             val photoTitle = findViewById<EditText>(R.id.viewpic_edittext_title).text.toString()
             val description = findViewById<EditText>(R.id.viewpic_edittext_description).text.toString()
-            val postData = UploadPostModel(photoTitle, "", description, addressLocation,photoLongitude, photoLatitude, photoAltitude)
+            val postData = UploadPostModel(photoTitle, "", description, categories, addressLocation, photoLongitude, photoLatitude, photoAltitude)
 
             if(photoTitle.isNullOrEmpty() || description.isNullOrEmpty()){
                 Toast.makeText(this, "Please choose a Title and a Description for this Picture", Toast.LENGTH_SHORT).show()
@@ -89,9 +86,8 @@ class PostPictureActivity : AppCompatActivity() {
             }
         }
 
-        findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
-            addCategory()
-        }
+        // auto fill-in for categories
+
 
 
     }
@@ -132,27 +128,34 @@ class PostPictureActivity : AppCompatActivity() {
     }
 
     private fun addCategory() {
-        var insertText: String = findViewById<EditText>(R.id.viewpic_edittext_category).text.toString()
+        val insertText: String = findViewById<EditText>(R.id.viewpic_edittext_category).text.toString()
         var previousText: String = "test"
-        if (findViewById<TextView>(R.id.viewpic_textview_cat1).text == "") {
-            findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
-        } else if (findViewById<TextView>(R.id.viewpic_textview_cat2).text == "") {
-            previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
-            findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
-            findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
 
-        } else if (findViewById<TextView>(R.id.viewpic_textview_morecat).text == "") {
-            previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
-            findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
-            findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
-            findViewById<TextView>(R.id.viewpic_textview_morecat).text = "and more..."
+        if (insertText in suggestions) {
+            categories.add(insertText)
+
+            if (findViewById<TextView>(R.id.viewpic_textview_cat1).text == "") {
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+            } else if (findViewById<TextView>(R.id.viewpic_textview_cat2).text == "") {
+                previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+                findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
+            } else if (findViewById<TextView>(R.id.viewpic_textview_morecat).text == "") {
+                previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+                findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
+                findViewById<TextView>(R.id.viewpic_textview_morecat).text = "and more..."
+            } else {
+                previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+                findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
+            }
         } else {
-            previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
-            findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
-            findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
+            Toast.makeText(this, "Please use a category from the list", Toast.LENGTH_SHORT).show()
         }
         findViewById<EditText>(R.id.viewpic_edittext_category).setText("")
     }
+
 
     fun checkLocationPermission() {
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -207,13 +210,9 @@ class PostPictureActivity : AppCompatActivity() {
                     LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE -> {
                         //setting unavailable
                     }
-
                 }
             }
-
         }
-
-
     }
 
     fun getUserLocation() {
@@ -256,14 +255,27 @@ class PostPictureActivity : AppCompatActivity() {
             }else{
                 Toast.makeText(this, "Location Service Not available!!", Toast.LENGTH_SHORT).show()
             }
-
-
-
         }
-
     }
 
+    fun getSuggestions() {
+        getCategories(this,
+            success = {
+                // handle success
+                // TODO: better solution?
+                suggestions = it
+                val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
+                val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, it)
+                editCategories.setAdapter(adapter)
 
+                findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
+                    addCategory()
+                }
 
-
+            },
+            error = {
+                // handle error
+                Log.e("Category",it)
+            })
+    }
 }
