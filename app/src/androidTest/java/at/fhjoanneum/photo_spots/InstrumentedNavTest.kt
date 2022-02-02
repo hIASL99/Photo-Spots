@@ -1,24 +1,18 @@
 package at.fhjoanneum.photo_spots
-import androidx.fragment.app.testing.launchFragmentInContainer
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.testing.TestNavHostController
-import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
+
+import android.content.Intent
+import androidx.test.espresso.Espresso.*
+import androidx.test.espresso.action.ViewActions.*
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.intent.Intents
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasAction
 import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import at.fhjoanneum.photo_spots.ui.dashboard.DashboardFragment
-import at.fhjoanneum.photo_spots.ui.home.HomeFragment
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.verify
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -26,7 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class InstrumentedTest {
+class InstrumentedNavTest {
     @get:Rule
     val rule = ActivityScenarioRule(MainActivity::class.java)
 
