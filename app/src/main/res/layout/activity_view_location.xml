@@ -48,12 +48,11 @@
             android:id="@+id/viewloc_imageview"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_postuser"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_cat1"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
@@ -89,7 +88,8 @@
             android:insetLeft="6dp"
             android:insetRight="6dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:icon="@android:drawable/star_on"
+            android:textColorHighlight="@color/ghost_white"
+            app:icon="@drawable/ic_baseline_thumb_up_24"
             app:iconPadding="20dp"
             app:iconTint="@color/colour1"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_imageview"
@@ -103,7 +103,9 @@
             android:layout_height="60dp"
             android:layout_marginEnd="8dp"
             android:backgroundTint="@color/light_grey"
-            app:icon="@android:drawable/star_off"
+            android:textColorHighlight="@color/ghost_white"
+            android:textColorLink="@color/ghost_white"
+            app:icon="@drawable/ic_baseline_thumb_down_24"
             app:iconTint="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_button_like"
             app:layout_constraintEnd_toEndOf="parent"
@@ -117,18 +119,17 @@
             android:layout_marginTop="4dp"
             android:progressTint="@color/colour1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
 
         <TextView
             android:id="@+id/viewloc_textview_label_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
             android:text="Categories:"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_textview_address"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_address" />
 
         <TextView
             android:id="@+id/viewloc_textview_cat1"
@@ -136,7 +137,8 @@
             android:layout_height="wrap_content"
             android:text="Category"
             android:textAlignment="center"
-            app:layout_constraintEnd_toStartOf="@+id/viewloc_button_share"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintStart_toStartOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintWidth_max="110dp" />
@@ -146,48 +148,45 @@
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Comment..."
             android:inputType="textPersonName"
             android:selectAllOnFocus="false"
             android:singleLine="false"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_cat1" />
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_ratingbar_rating" />
 
         <Button
             android:id="@+id/viewloc_button_commentadd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_width="186dp"
+            android:layout_height="122dp"
+            android:background="@drawable/ic_new_button2"
             android:text="Add"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintBottom_toBottomOf="@+id/viewloc_edittext_comment"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_edittext_comment" />
+            app:layout_constraintEnd_toEndOf="@+id/viewloc_edittext_comment"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_edittext_comment"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_edittext_comment" />
 
         <TextView
             android:id="@+id/viewloc_textview_topcomment_username1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
             android:text="username"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_edittext_comment" />
+            app:layout_constraintEnd_toEndOf="@+id/viewloc_button_commentadd"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_button_commentadd"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_button_commentadd" />
 
         <Button
             android:id="@+id/viewloc_button_share"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="share"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_label_categories" />
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="2dp"
+            app:icon="@drawable/ic_baseline_share_24"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_imageview"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

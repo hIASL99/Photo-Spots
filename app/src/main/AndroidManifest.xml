@@ -33,6 +33,7 @@
             android:exported="false" />
         <activity
             android:name=".ViewLocationActivity"
+            android:parentActivityName=".MainActivity"
             android:exported="false" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -55,8 +56,7 @@
         <activity
             android:name=".CameraActivity"
             android:parentActivityName=".MainActivity"
-            android:exported="false"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:parentActivityName=".MainActivity"
