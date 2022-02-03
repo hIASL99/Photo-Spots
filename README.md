@@ -9,8 +9,8 @@ Klick [here](https://...) to view the user documentation.
 
 Installation:
 - Insert the Key at app/res/values/google_maps_api.xml at to have access to google maps
-    - Salhofer: 
-    - Bloder:
+    - Salhofer: AIzaSyBV6cKhm6ZEp7OB3KaO45VYZ9xt1j47qrw
+    - Bloder: AIzaSyA1dKfjeQIZrvSMhkZy2YBFvm4JhnM9lRo
     
 - Build the APK
 - Install the App
