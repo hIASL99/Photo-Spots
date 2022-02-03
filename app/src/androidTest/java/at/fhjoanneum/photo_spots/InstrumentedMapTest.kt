@@ -54,7 +54,7 @@ class InstrumentedMapTest {
         Thread.sleep(5000)
         onView(withId(R.id.dashboard_recyclerview))
             .perform(
-                RecyclerViewActions.actionOnItem<PostViewHolder>(hasDescendant(withText("Numpad")), click())
+                RecyclerViewActions.actionOnItem<PostViewHolder>(hasDescendant(withText("Rainbow Building")), click())
             )
         intended(hasComponent(ViewLocationActivity::class.java.name))
         Thread.sleep(1000)
@@ -67,9 +67,8 @@ class InstrumentedMapTest {
         onView(withId(R.id.navigation_map)).perform(click())
         Thread.sleep(2000)
         val device = UiDevice.getInstance(getInstrumentation())
-            //.descriptionContains("8010 Graz"))
         val marker = device.findObject(UiSelector().descriptionContains("Your current location"))
-        marker.click()
+        marker.clickAndWaitForNewWindow()
         val display = rule.activity.windowManager.defaultDisplay
         val size = Point()
         display.getRealSize(size)
@@ -81,5 +80,6 @@ class InstrumentedMapTest {
         device.click(x, y)
         Thread.sleep(1000)
         intended(hasComponent(CameraActivity::class.java.name))
+
     }
 }
