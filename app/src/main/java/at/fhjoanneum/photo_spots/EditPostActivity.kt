@@ -39,8 +39,7 @@ class EditPostActivity : AppCompatActivity() {
             },
             error = {
                 Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
-                val mapIntent = Intent(this, MapFragment::class.java)
-                startActivity(mapIntent)
+
             }
         )
 
@@ -53,7 +52,7 @@ class EditPostActivity : AppCompatActivity() {
             .load(image)
             .into(findViewById(R.id.edit_viewpic_imageview))
 
-        findViewById<TextView>(R.id.edit_viewpic_textview_address).setText(location.getGPSData().Address)
+        findViewById<TextView>(R.id.edit_viewpic_textview_address).text = location.getGPSData().Address
 
         var catText = ""
         for (cat in location.Categories){
@@ -69,7 +68,7 @@ class EditPostActivity : AppCompatActivity() {
             edit_post.Description = findViewById<EditText>(R.id.edit_viewpic_edittext_description).text.toString()
 
             PostRepository.changePost(this,edit_post,
-                success = {//finish()
+                success = {finish()
 
                 },
                 error = {
@@ -81,14 +80,13 @@ class EditPostActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.edit_delete_post).setOnClickListener(){
             PostRepository.deletePost(this,edit_post.Id,
-                success = {//finish()
+                success = {finish()
 
 
                 },
                 error = {
                     Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
-                    val mapIntent = Intent(this, MapFragment::class.java)
-                    startActivity(mapIntent)
+
                 }
             )
         }

@@ -62,6 +62,12 @@ class HomeFragment : Fragment() {
         }
 
     }
+    override fun onResume() {
+        super.onResume()
+        if (activity?.isDestroyed == false && this.isAdded && view != null) {
+            updateList(requireContext())
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -84,4 +90,5 @@ class HomeFragment : Fragment() {
         const val TAG_ID = "TAG_ID"
         const val TAG_BOOL = "TAG_BOOL"
     }
+    
 }

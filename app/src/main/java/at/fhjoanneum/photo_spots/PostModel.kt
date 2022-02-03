@@ -41,6 +41,10 @@ class PostModel(val Id:Int,
     }
     fun getRating():Float{
         var result = 0.0f
+        if (Rating.size == 0){
+            return result
+        }
+
         for (i in Rating){
             if (i.Rating){
                 result += 1

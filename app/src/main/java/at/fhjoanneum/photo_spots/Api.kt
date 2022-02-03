@@ -67,10 +67,10 @@ interface ApiService {
     @GET("Api/photos/{id}")
     fun getPhotoById(@Path("id") id: String,@Header("Authorization") token: String):Call<PostModel>
 
-    @DELETE("Api/photos/myPhotos/{id}")
+    @DELETE("Api/photos/{id}")
     fun deletePhotoById(@Path("id") id: String,@Header("Authorization") token: String):Call<Unit>
 
-    @PUT("Api/photos/myPhotos")
+    @PUT("Api/photos")
     fun changePostByID(@Body postToEdit: PostModel, @Header("Authorization") token: String):Call<Unit>
 
 
