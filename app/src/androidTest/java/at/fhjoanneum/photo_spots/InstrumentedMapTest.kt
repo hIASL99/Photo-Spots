@@ -80,5 +80,6 @@ class InstrumentedMapTest {
         device.click(x, y)
         Thread.sleep(1000)
         intended(hasComponent(CameraActivity::class.java.name))
+
     }
 }
