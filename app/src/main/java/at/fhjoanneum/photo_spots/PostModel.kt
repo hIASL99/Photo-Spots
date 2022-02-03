@@ -20,9 +20,9 @@ class UploadRatingModel(val Rating: Boolean, val PostId:Int){}
 @JsonClass(generateAdapter = true)
 class PostModel(val Id:Int,
                 val UserId:String,
-                val Title:String,
+                var Title:String,
                 val Photo:String,
-                val Description:String,
+                var Description:String,
                 val Location:String,
                 val LocationLongitude:Double,
                 val LocationLatitude:Double,

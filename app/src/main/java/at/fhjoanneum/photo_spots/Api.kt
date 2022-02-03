@@ -64,6 +64,16 @@ interface ApiService {
     @GET("Api/category")
     fun getCategories(@Header("Authorization") token: String):Call<List<CategoryModel>>
 
+    @GET("Api/photos/{id}")
+    fun getPhotoById(@Path("id") id: String,@Header("Authorization") token: String):Call<PostModel>
+
+    @DELETE("Api/photos/myPhotos/{id}")
+    fun deletePhotoById(@Path("id") id: String,@Header("Authorization") token: String):Call<Unit>
+
+    @PUT("Api/photos/myPhotos")
+    fun changePostByID(@Body postToEdit: PostModel, @Header("Authorization") token: String):Call<Unit>
+
+
     //rating
     @POST("/API/Rating")
     fun uploadRating(@Body uploadRatingModel: UploadRatingModel,@Header("Authorization") token: String):Call<List<Rating>>

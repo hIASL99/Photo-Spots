@@ -7,7 +7,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".PostPictureActivity">
+        tools:context=".EditPostActivity">
+
+        <Button
+            android:id="@+id/edit_delete_post"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/ic_baseline_delete_24"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_viewpic_imageview"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageView
             android:id="@+id/edit_viewpic_imageview"
@@ -16,25 +26,10 @@
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
-
-        <Button
-            android:id="@+id/viewpic_button_retake"
-            style="@android:style/Widget.Holo.Button.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleX="0.7"
-            android:scaleY="0.7"
-            app:icon="@android:drawable/ic_menu_edit"
-            app:iconPadding="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_viewpic_imageview"
-            app:layout_constraintEnd_toEndOf="@+id/edit_viewpic_imageview"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_imageview"
-            app:layout_constraintTop_toTopOf="@+id/edit_viewpic_imageview"
-            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/edit_viewpic_edittext_title"
@@ -98,31 +93,12 @@
             app:layout_constraintTop_toTopOf="@+id/edit_viewpic_textview_label_desc" />
 
         <TextView
-            android:id="@+id/edit_viewpic_textview_label_categories"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="Categories"
-            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_textview_label_desc"
-            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_label_desc" />
-
-        <Button
-            android:id="@+id/edit_viewpic_button_categoryadd"
-            android:layout_width="64dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:text="Add"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_viewpic_textview_label_categories"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edit_viewpic_textview_label_categories" />
-
-        <TextView
             android:id="@+id/edit_viewpic_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_textview_label_categories"
-            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_label_categories" />
+            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_textview_label_desc"
+            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_edittext_description" />
 
         <TextView
             android:id="@+id/edit_viewpic_textview_cat2"
@@ -131,7 +107,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/edit_viewpic_textview_cat1"
-            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_label_categories" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_edittext_description" />
 
         <TextView
             android:id="@+id/edit_viewpic_textview_morecat"
@@ -140,28 +116,17 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/edit_viewpic_textview_cat2"
-            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_label_categories" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_edittext_description" />
 
         <Button
             android:id="@+id/edit_viewpic_button_save"
             android:layout_width="186dp"
             android:layout_height="122dp"
             android:background="@drawable/ic_new_button2"
-            android:text="Post"
+            android:text="Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_cat1" />
-
-        <AutoCompleteTextView
-            android:id="@+id/edit_viewpic_edittext_category"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:completionThreshold="0"
-            app:layout_constraintBottom_toBottomOf="@+id/edit_viewpic_textview_label_categories"
-            app:layout_constraintEnd_toStartOf="@+id/edit_viewpic_button_categoryadd"
-            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_edittext_description"
-            app:layout_constraintTop_toTopOf="@+id/edit_viewpic_textview_label_categories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

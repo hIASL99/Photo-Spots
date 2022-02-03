@@ -13,11 +13,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import at.fhjoanneum.photo_spots.CameraActivity
-import at.fhjoanneum.photo_spots.PostAdapter
-import at.fhjoanneum.photo_spots.PostRepository
-import at.fhjoanneum.photo_spots.R
+import at.fhjoanneum.photo_spots.*
 import at.fhjoanneum.photo_spots.databinding.FragmentHomeBinding
+import at.fhjoanneum.photo_spots.ui.dashboard.DashboardFragment
+import at.fhjoanneum.photo_spots.ui.dashboard.DashboardFragment.Companion.TAG_ID
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +26,11 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
     val postAdapter = PostAdapter() {
+        val intent = Intent(context, EditPostActivity::class.java)
+        intent.putExtra(HomeFragment.TAG_ID, it.Id.toString())
+
+        intent.putExtra(HomeFragment.TAG_BOOL, false)
+        startActivity(intent)
 
     }
     override fun onCreateView(
@@ -75,5 +79,9 @@ class HomeFragment : Fragment() {
                 Log.e("API ERROR",it)
             }
         )
+    }
+    companion object {
+        const val TAG_ID = "TAG_ID"
+        const val TAG_BOOL = "TAG_BOOL"
     }
 }

@@ -34,12 +34,23 @@ class DashboardFragment : Fragment() {
     private var filteredList = mutableListOf<PostModel>()
 
     val postAdapter = PostAdapter() {
+        val db = LoginModelDatabase.getDatabase(requireContext())
+        val username = db.loginModelDao.getUserName().toString()
 
-        val intent = Intent(context, ViewLocationActivity::class.java)
-        intent.putExtra(TAG_ID, it.Id.toString())
+        if(it.UserName == username) {
+            val intent = Intent(context, EditPostActivity::class.java)
+            intent.putExtra(TAG_ID, it.Id.toString())
 
-        intent.putExtra(TAG_BOOL, false)
-        startActivity(intent)
+            intent.putExtra(TAG_BOOL, false)
+            startActivity(intent)
+
+        }else {
+            val intent = Intent(context, ViewLocationActivity::class.java)
+            intent.putExtra(TAG_ID, it.Id.toString())
+
+            intent.putExtra(TAG_BOOL, false)
+            startActivity(intent)
+        }
     }
 
     override fun onCreateView(
