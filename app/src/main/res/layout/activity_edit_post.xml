@@ -33,13 +33,14 @@
 
         <EditText
             android:id="@+id/edit_viewpic_edittext_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_guideline35"
             app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_imageview" />
 
         <TextView
@@ -66,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="TextView"
+            android:text="textView"
             app:layout_constraintEnd_toEndOf="@+id/edit_viewpic_edittext_title"
             app:layout_constraintStart_toStartOf="@+id/edit_viewpic_edittext_title"
             app:layout_constraintTop_toTopOf="@+id/edit_viewpic_textview_gpslabel_add"
@@ -79,17 +80,18 @@
             android:layout_marginTop="32dp"
             android:text="Description"
             app:layout_constraintStart_toStartOf="@+id/edit_viewpic_textview_gpslabel_add"
-            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_gpslabel_add" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_address" />
 
         <EditText
             android:id="@+id/edit_viewpic_edittext_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="32dp"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="@+id/edit_viewpic_textview_label_desc"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/edit_viewpic_guideline35"
             app:layout_constraintTop_toTopOf="@+id/edit_viewpic_textview_label_desc" />
 
         <TextView
@@ -127,6 +129,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_viewpic_textview_cat1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/edit_viewpic_guideline35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
