@@ -48,6 +48,7 @@ class PostPictureActivity : AppCompatActivity() {
         setContentView(R.layout.activity_post_picture)
 
         getSuggestions()
+
         val imageUriString: String = intent.getStringExtra(CameraActivity.IMAGE_URI).toString()
         //Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
         val imageUri: Uri = imageUriString.toUri()
@@ -56,7 +57,7 @@ class PostPictureActivity : AppCompatActivity() {
             Glide
                 .with(this)
                 .load(imageUri)
-                .into(findViewById(R.id.edit_viewpic_imageview))
+                .into(findViewById(R.id.viewpic_imageview))
         }
 
 
@@ -64,22 +65,26 @@ class PostPictureActivity : AppCompatActivity() {
         val imageFile: File = imageUri.toFile()
 
 
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         checkLocationPermission()
+
+        findViewById<Button>(R.id.viewpic_button_refresh_address).setOnClickListener {
+            checkLocationPermission()
+        }
 
         findViewById<Button>(R.id.viewpic_button_retake).setOnClickListener(){
             val retakeIntent = Intent(this, CameraActivity::class.java)
             startActivity(retakeIntent)
         }
-        findViewById<Button>(R.id.edit_viewpic_button_save).setOnClickListener(){
-            if (!pressed){
+
+        findViewById<Button>(R.id.viewpic_button_post).setOnClickListener(){
+            if (!pressed) {
                 pressed = true
 
                 val reqFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
                 val body = MultipartBody.Part.createFormData("upload", imageFile.name, reqFile)
-                val photoTitle = findViewById<EditText>(R.id.edit_viewpic_edittext_title).text.toString()
-                val description = findViewById<EditText>(R.id.edit_viewpic_edittext_description).text.toString()
+                val photoTitle = findViewById<EditText>(R.id.viewpic_edittext_title).text.toString()
+                val description = findViewById<EditText>(R.id.viewpic_edittext_description).text.toString()
                 val postData = UploadPostModel(photoTitle, "", description, categories, addressLocation, photoLongitude, photoLatitude, photoAltitude)
 
                 if(photoTitle.isNullOrEmpty() || description.isNullOrEmpty()){
@@ -90,11 +95,6 @@ class PostPictureActivity : AppCompatActivity() {
             }
 
         }
-
-        // auto fill-in for categories
-
-
-
     }
 
     private fun uploadPost(post:UploadPostModel){
@@ -105,7 +105,6 @@ class PostPictureActivity : AppCompatActivity() {
                 Log.e("POST","SUCCESS")
                 val backHomeIntent = Intent(this, MainActivity::class.java)
                 startActivity(backHomeIntent)
-
             },
             error = {
                 // handle error
@@ -128,8 +127,8 @@ class PostPictureActivity : AppCompatActivity() {
             },
             error = {
                 // handle error
-                Log.e("APIpicture",it)
-                val toast = Toast.makeText(applicationContext,it, Toast.LENGTH_LONG)
+                Log.e("API",it)
+                val toast = Toast.makeText(applicationContext, it, Toast.LENGTH_LONG)
                 toast.show()
                 pressed = false
             }
@@ -137,32 +136,32 @@ class PostPictureActivity : AppCompatActivity() {
     }
 
     private fun addCategory() {
-        val insertText: String = findViewById<EditText>(R.id.edit_viewpic_edittext_category).text.toString()
+        val insertText: String = findViewById<EditText>(R.id.viewpic_edittext_category).text.toString()
         var previousText: String = "test"
 
         if (insertText in suggestions) {
             categories.add(insertText)
 
-            if (findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text == "") {
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text = insertText
-            } else if (findViewById<TextView>(R.id.edit_viewpic_textview_cat2).text == "") {
-                previousText = findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text.toString()
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text = insertText
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat2).text = previousText
-            } else if (findViewById<TextView>(R.id.edit_viewpic_textview_morecat).text == "") {
-                previousText = findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text.toString()
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text = insertText
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat2).text = previousText
-                findViewById<TextView>(R.id.edit_viewpic_textview_morecat).text = "and more..."
+            if (findViewById<TextView>(R.id.viewpic_textview_cat1).text == "") {
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+            } else if (findViewById<TextView>(R.id.viewpic_textview_cat2).text == "") {
+                previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+                findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
+            } else if (findViewById<TextView>(R.id.viewpic_textview_morecat).text == "") {
+                previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+                findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
+                findViewById<TextView>(R.id.viewpic_textview_morecat).text = "and more..."
             } else {
-                previousText = findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text.toString()
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text = insertText
-                findViewById<TextView>(R.id.edit_viewpic_textview_cat2).text = previousText
+                previousText = findViewById<TextView>(R.id.viewpic_textview_cat1).text.toString()
+                findViewById<TextView>(R.id.viewpic_textview_cat1).text = insertText
+                findViewById<TextView>(R.id.viewpic_textview_cat2).text = previousText
             }
         } else {
             Toast.makeText(this, "Please use a category from the list", Toast.LENGTH_SHORT).show()
         }
-        findViewById<EditText>(R.id.edit_viewpic_edittext_category).setText("")
+        findViewById<EditText>(R.id.viewpic_edittext_category).setText("")
     }
 
 
@@ -254,7 +253,7 @@ class PostPictureActivity : AppCompatActivity() {
                     photoLatitude = location.latitude
                     photoLongitude = location.longitude
 
-                    findViewById<TextView>(R.id.edit_viewpic_textview_address).text = addressLocation
+                    findViewById<TextView>(R.id.viewpic_textview_address).text = addressLocation
 
 
                 } catch (exception: IOException) {
@@ -271,16 +270,15 @@ class PostPictureActivity : AppCompatActivity() {
         getCategories(this,
             success = {
                 // handle success
-                // TODO: better solution?
                 suggestions = it
-                val editCategories: AutoCompleteTextView = findViewById(R.id.edit_viewpic_edittext_category)
+                // auto fill-in for categories
+                val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
                 val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, it)
                 editCategories.setAdapter(adapter)
 
-                findViewById<Button>(R.id.edit_viewpic_button_categoryadd).setOnClickListener() {
+                findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
                     addCategory()
                 }
-
             },
             error = {
                 // handle error
