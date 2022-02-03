@@ -35,13 +35,11 @@ class ViewLocationActivity : AppCompatActivity() {
         val idFromDashboard = intent.getStringExtra(DashboardFragment.TAG_ID)?.toInt()
 
         if (idFromMap != null) {
-            PostRepository.getphotoList(this,
+            PostRepository.getPhotoByID(this,idFromMap,
                 success = {
-                    //location = it.filter {it.Id == idFromMap}[0]
-                    if (it.find { it.Id == idFromMap } != null) {
-                        location = it.find { it.Id == idFromMap}!!
+                        location = it
                         setupPost(location)
-                    }
+
                 },
                 error = {
                     Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
@@ -50,12 +48,11 @@ class ViewLocationActivity : AppCompatActivity() {
                 }
             )
         } else if (idFromDashboard != null) {
-            PostRepository.getphotoList(this,
+            PostRepository.getPhotoByID(this,idFromDashboard,
                 success = {
-                    if (it.find { it.Id == idFromDashboard } != null) {
-                        location = it.find { it.Id == idFromDashboard}!!
-                        setupPost(location)
-                    }
+                    location = it
+                    setupPost(location)
+
                 },
                 error = {
                     Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
