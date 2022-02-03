@@ -70,10 +70,10 @@
             android:id="@+id/viewpic_textview_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
             android:gravity="center"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/viewpic_edittext_title"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_edittext_title"
             app:layout_constraintTop_toTopOf="@+id/viewpic_textview_gpslabel_add"
             app:layout_constraintWidth_max="250dp" />
 
@@ -82,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="description"
+            android:text="Description"
             app:layout_constraintStart_toStartOf="@+id/viewpic_textview_gpslabel_add"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_gpslabel_add" />
 
@@ -101,10 +101,9 @@
             android:id="@+id/viewpic_textview_label_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="50dp"
             android:text="Categories"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_textview_label_desc"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_desc" />
 
         <Button
@@ -121,49 +120,47 @@
             android:id="@+id/viewpic_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_button_post" />
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_textview_label_categories"
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
         <TextView
             android:id="@+id/viewpic_textview_cat2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat1"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_button_post" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
         <TextView
             android:id="@+id/viewpic_textview_morecat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat2"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_button_post" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
         <Button
             android:id="@+id/viewpic_button_post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_width="186dp"
+            android:layout_height="122dp"
+            android:background="@drawable/ic_new_button2"
             android:text="Post"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_cat1" />
 
         <AutoCompleteTextView
             android:id="@+id/viewpic_edittext_category"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:completionThreshold="0"
             app:layout_constraintBottom_toBottomOf="@+id/viewpic_textview_label_categories"
             app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
-            app:layout_constraintStart_toEndOf="@+id/viewpic_textview_label_categories"
+            app:layout_constraintStart_toStartOf="@+id/viewpic_edittext_description"
             app:layout_constraintTop_toTopOf="@+id/viewpic_textview_label_categories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
