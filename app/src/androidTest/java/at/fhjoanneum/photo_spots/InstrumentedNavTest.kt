@@ -44,14 +44,14 @@ class InstrumentedNavTest {
         Thread.sleep(5000)
         onView(withId(R.id.dashboard_recyclerview))
             .perform(
-                RecyclerViewActions.actionOnItem<PostViewHolder>(hasDescendant(withText("Numpad")), click())
+                RecyclerViewActions.actionOnItem<PostViewHolder>(hasDescendant(withText("Rainbow Building")), click())
             )
         intended(hasComponent(ViewLocationActivity::class.java.name))
 
         Thread.sleep(2000)
         onView(withId(R.id.viewloc_text_title))
             .check(
-                matches(withText("Numpad"))
+                matches(withText("Rainbow Building"))
             )
         onView(withId(R.id.viewloc_button_share))
             .perform(click())
