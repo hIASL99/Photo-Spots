@@ -97,8 +97,8 @@ class PostPictureActivity : AppCompatActivity() {
             success = {
                 // handle success
                 Log.e("POST","SUCCESS")
-                //this.parent.finish()
-                finish()
+                val backHomeIntent = Intent(this, MainActivity::class.java)
+                startActivity(backHomeIntent)
             },
             error = {
                 // handle error
