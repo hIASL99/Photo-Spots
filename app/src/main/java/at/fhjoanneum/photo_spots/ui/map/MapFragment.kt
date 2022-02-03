@@ -110,9 +110,11 @@ class MapFragment : Fragment() {
 
                 },
                 error = {
-                    val viewPicIntent = Intent(requireContext(), ViewLocationActivity::class.java)
-                    viewPicIntent.putExtra(TAG_ID, id)
-                    startActivity(viewPicIntent)
+                    //val viewPicIntent = Intent(requireContext(), ViewLocationActivity::class.java)
+                    //viewPicIntent.putExtra(TAG_ID, id)
+                    //startActivity(viewPicIntent)
+                    val takePicIntent = Intent(requireContext(), CameraActivity::class.java)
+                    startActivity(takePicIntent)
                 }
             )
 

@@ -69,7 +69,7 @@ class PostPictureActivity : AppCompatActivity() {
         checkLocationPermission()
 
         findViewById<Button>(R.id.viewpic_button_refresh_address).setOnClickListener {
-            checkLocationPermission()
+            getUserLocation()
         }
 
         findViewById<Button>(R.id.viewpic_button_retake).setOnClickListener(){
