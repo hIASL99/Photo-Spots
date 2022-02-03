@@ -56,6 +56,7 @@
             android:id="@+id/viewloc_imageview"
             android:layout_width="fill_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
@@ -69,7 +70,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:maxHeight="50dp"
-            android:text="TextView"
+            android:minHeight="60dp"
+            android:text="Address"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewloc_text_title"
             app:layout_constraintWidth_max="120dp" />
@@ -81,7 +83,7 @@
             android:layout_marginEnd="16dp"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:text="100"
+            android:text="0"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_ratingbar_rating"
             app:layout_constraintEnd_toStartOf="@+id/viewloc_ratingbar_rating"
             app:layout_constraintTop_toTopOf="@+id/viewloc_ratingbar_rating" />
@@ -136,20 +138,23 @@
             android:layout_height="wrap_content"
             android:text="Categories:"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="@+id/viewloc_textview_address"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_text_title"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_address" />
 
         <TextView
             android:id="@+id/viewloc_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:text="Category"
             android:textAlignment="center"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/viewloc_textview_label_categories"
-            app:layout_constraintStart_toStartOf="@+id/viewloc_textview_label_categories"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_label_categories"
-            app:layout_constraintWidth_max="110dp" />
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_categories" />
 
         <EditText
             android:id="@+id/viewloc_edittext_comment"
@@ -191,7 +196,7 @@
             android:id="@+id/viewloc_button_share"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="2dp"
+            android:layout_marginStart="8dp"
             app:icon="@drawable/ic_baseline_share_24"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_imageview"
             app:layout_constraintStart_toStartOf="parent" />

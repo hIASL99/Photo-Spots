@@ -77,10 +77,9 @@ class ViewLocationActivity : AppCompatActivity() {
         val roundRate = String.format("%.1f", location.getRating().toDouble())
         findViewById<TextView>(R.id.viewloc_textview_rating).text = roundRate
         findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.Rating.size.toString()
-        var catText = ""
-        for (cat in location.Categories){
-            catText = catText + "\n" + cat
-        }
+
+        val catText = location.Categories.joinToString(", ")
+
         findViewById<TextView>(R.id.viewloc_textview_cat1).text = catText
         val image = location.Photo
         Glide
