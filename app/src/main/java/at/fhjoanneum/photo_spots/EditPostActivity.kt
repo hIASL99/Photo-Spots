@@ -59,7 +59,7 @@ class EditPostActivity : AppCompatActivity() {
             catText = catText + "\n" + cat
         }
         findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text = catText
-
+        findViewById<TextView>(R.id.edit_textview_comments).text = location.getComments()
         findViewById<EditText>(R.id.edit_viewpic_edittext_title).text = location.Title.toEditable()
         findViewById<EditText>(R.id.edit_viewpic_edittext_description).text = location.Description.toEditable()
 
