@@ -54,11 +54,9 @@ class EditPostActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.edit_viewpic_textview_address).text = location.getGPSData().Address
 
-        var catText = ""
-        for (cat in location.Categories){
-            catText = catText + "\n" + cat
-        }
-        findViewById<TextView>(R.id.edit_viewpic_textview_cat1).text = catText
+        val catText = location.Categories.joinToString(", ")
+
+        findViewById<TextView>(R.id.edit_viewpic_textview_cat).text = catText
         findViewById<TextView>(R.id.edit_textview_comments).text = location.getComments()
         findViewById<EditText>(R.id.edit_viewpic_edittext_title).text = location.Title.toEditable()
         findViewById<EditText>(R.id.edit_viewpic_edittext_description).text = location.Description.toEditable()
@@ -80,17 +78,14 @@ class EditPostActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.edit_delete_post).setOnClickListener(){
             PostRepository.deletePost(this,edit_post.Id,
-                success = {finish()
-
-
+                success = {
+                    finish()
                 },
                 error = {
                     Toast.makeText(this, "There was an Error!", Toast.LENGTH_LONG).show()
-
                 }
             )
         }
-
     }
 }
 fun String.toEditable(): Editable =  Editable.Factory.getInstance().newEditable(this)

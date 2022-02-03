@@ -115,7 +115,7 @@ class PostModel(val Id:Int,
     }
     fun getComments():String{
         var comments = ""
-        for (comment in Comments.reversed()) {
+        for (comment in Comments) {
             comments = comments + comment.UserName +" "+ comment.DatePosted + ":\n" + comment.Text + "\n\n"
         }
         return comments
