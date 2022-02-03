@@ -20,9 +20,9 @@ class UploadRatingModel(val Rating: Boolean, val PostId:Int){}
 @JsonClass(generateAdapter = true)
 class PostModel(val Id:Int,
                 val UserId:String,
-                val Title:String,
+                var Title:String,
                 val Photo:String,
-                val Description:String,
+                var Description:String,
                 val Location:String,
                 val LocationLongitude:Double,
                 val LocationLatitude:Double,
@@ -43,6 +43,10 @@ class PostModel(val Id:Int,
 
 
         var result = 0.0f
+        if (Rating.size == 0){
+            return result
+        }
+
         for (i in Rating){
             if (i.Rating){
                 result += 1

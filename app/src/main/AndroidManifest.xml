@@ -51,6 +51,9 @@
             android:name=".MapsActivity"
             android:exported="false" />
         <activity
+            android:name=".EditPostActivity"
+            android:exported="false" />
+        <activity
             android:name=".PostPictureActivity"
             android:parentActivityName=".CameraActivity"
             android:exported="false" />

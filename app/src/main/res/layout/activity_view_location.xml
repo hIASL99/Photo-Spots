@@ -3,15 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
+
         tools:context=".ViewPicture">
+
+        <TextView
+            android:id="@+id/viewloc_textview_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="0"
+            app:layout_constraintStart_toEndOf="@+id/viewloc_ratingbar_rating"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
 
         <TextView
             android:id="@+id/viewloc_text_title"

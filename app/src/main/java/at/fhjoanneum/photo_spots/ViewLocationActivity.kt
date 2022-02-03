@@ -74,6 +74,8 @@ class ViewLocationActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.viewloc_text_title).setText(location.Title)
         findViewById<TextView>(R.id.viewloc_textview_address).setText(location.getGPSData().Address)
         findViewById<RatingBar>(R.id.viewloc_ratingbar_rating).rating = location.getRating()
+        val roundRate = String.format("%.1f", location.getRating().toDouble())
+        findViewById<TextView>(R.id.viewloc_textview_rating).text = roundRate
         findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.Rating.size.toString()
         var catText = ""
         for (cat in location.Categories){
@@ -140,8 +142,11 @@ class ViewLocationActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
             val commentToAdd = findViewById<EditText>(R.id.viewloc_edittext_comment).text.toString()
-            location.addComment(commentToAdd,this)
-            setupComments(location)
+            if (commentToAdd != "") {
+                location.addComment(commentToAdd,this)
+                findViewById<EditText>(R.id.viewloc_edittext_comment).setText("")
+                setupComments(location)
+            }
         }
 
     }
