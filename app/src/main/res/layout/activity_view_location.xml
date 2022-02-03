@@ -11,24 +11,36 @@
 
         tools:context=".ViewPicture">
 
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/viewloc_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="viewloc_textview_address,viewloc_textview_label_by"
+            tools:layout_editor_absoluteY="199dp" />
+
         <TextView
             android:id="@+id/viewloc_textview_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="4dp"
             android:text="0"
+            app:layout_constraintBottom_toBottomOf="@+id/viewloc_ratingbar_rating"
             app:layout_constraintStart_toEndOf="@+id/viewloc_ratingbar_rating"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_imageview" />
+            app:layout_constraintTop_toTopOf="@+id/viewloc_ratingbar_rating" />
 
         <TextView
             android:id="@+id/viewloc_text_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:inputType="textMultiLine"
             android:text="title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toStartOf="@+id/viewloc_textview_address"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,6 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
             android:text="by"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,6 +59,7 @@
             android:id="@+id/viewloc_textview_postuser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="TextView"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_label_by"
@@ -66,15 +80,14 @@
 
         <TextView
             android:id="@+id/viewloc_textview_address"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:maxHeight="50dp"
-            android:minHeight="60dp"
             android:text="Address"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_text_title"
-            app:layout_constraintWidth_max="120dp" />
+            app:layout_constraintHeight_min="50dp"
+            app:layout_constraintStart_toStartOf="@+id/viewloc_guideline50"
+            app:layout_constraintTop_toTopOf="@+id/viewloc_text_title" />
 
         <TextView
             android:id="@+id/viewloc_textview_postrating"
@@ -103,7 +116,6 @@
             app:iconPadding="20dp"
             app:iconTint="@color/colour1"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_imageview"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/viewloc_button_dislike" />
 
         <Button
@@ -126,7 +138,7 @@
             style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:progressTint="@color/colour1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,32 +148,33 @@
             android:id="@+id/viewloc_textview_label_categories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Categories:"
+            android:layout_marginTop="8dp"
+            android:text="Categories: "
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="@+id/viewloc_text_title"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_address" />
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_barrier" />
 
         <TextView
             android:id="@+id/viewloc_textview_cat1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:text="Category"
-            android:textAlignment="center"
-            android:textSize="12sp"
+            android:textAlignment="viewStart"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_textview_label_categories"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/viewloc_textview_label_categories"
-            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_categories" />
+            app:layout_constraintTop_toTopOf="@+id/viewloc_textview_label_categories"
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/viewloc_edittext_comment"
             style="@style/Widget.AppCompat.AutoCompleteTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="Comment..."
             android:inputType="textPersonName"
@@ -169,7 +182,7 @@
             android:singleLine="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewloc_ratingbar_rating" />
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_textview_description" />
 
         <Button
             android:id="@+id/viewloc_button_commentadd"
@@ -186,10 +199,13 @@
             android:id="@+id/viewloc_textview_topcomment_username1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="username"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:gravity="center_horizontal"
+            android:text="username aksjdhasd fjlksadj lksadj lksdaj lksadj lskad jlksd jflkasdj lksd jaflsdk jasldk laskdj laskd jlaskj lksadj lask d"
             android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/viewloc_button_commentadd"
-            app:layout_constraintStart_toStartOf="@+id/viewloc_button_commentadd"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewloc_button_commentadd" />
 
         <Button
@@ -200,6 +216,28 @@
             app:icon="@drawable/ic_baseline_share_24"
             app:layout_constraintBottom_toBottomOf="@+id/viewloc_imageview"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/viewloc_textview_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:inputType="textMultiLine"
+            android:text="description"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewloc_ratingbar_rating" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/viewloc_guideline50"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

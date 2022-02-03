@@ -72,6 +72,7 @@ class ViewLocationActivity : AppCompatActivity() {
         val roundRate = String.format("%.1f", location.getRating().toDouble())
         findViewById<TextView>(R.id.viewloc_textview_rating).text = roundRate
         findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.Rating.size.toString()
+        findViewById<TextView>(R.id.viewloc_textview_description).text = location.Description
 
         val catText = location.Categories.joinToString(", ")
 
