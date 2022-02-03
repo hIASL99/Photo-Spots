@@ -75,10 +75,9 @@ class ViewLocationActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.viewloc_textview_address).setText(location.getGPSData().Address)
         findViewById<RatingBar>(R.id.viewloc_ratingbar_rating).rating = location.getRating()
         findViewById<TextView>(R.id.viewloc_textview_postrating).text = location.Rating.size.toString()
-        var catText = ""
-        for (cat in location.Categories){
-            catText = catText + "\n" + cat
-        }
+
+        val catText = location.Categories.joinToString(", ")
+
         findViewById<TextView>(R.id.viewloc_textview_cat1).text = catText
         val image = location.Photo
         Glide
