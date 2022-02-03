@@ -39,6 +39,7 @@ class PostPictureActivity : AppCompatActivity() {
     private var photoLatitude:Double = 0.0
     private var  photoAltitude:Double = 0.0
     private var addressLocation:String = ""
+    private var pressed = false
     lateinit var locationRequest: com.google.android.gms.location.LocationRequest
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
 
@@ -72,18 +73,22 @@ class PostPictureActivity : AppCompatActivity() {
             startActivity(retakeIntent)
         }
         findViewById<Button>(R.id.edit_viewpic_button_save).setOnClickListener(){
+            if (!pressed){
+                pressed = true
 
-            val reqFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
-            val body = MultipartBody.Part.createFormData("upload", imageFile.name, reqFile)
-            val photoTitle = findViewById<EditText>(R.id.edit_viewpic_edittext_title).text.toString()
-            val description = findViewById<EditText>(R.id.edit_viewpic_edittext_description).text.toString()
-            val postData = UploadPostModel(photoTitle, "", description, categories, addressLocation, photoLongitude, photoLatitude, photoAltitude)
+                val reqFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
+                val body = MultipartBody.Part.createFormData("upload", imageFile.name, reqFile)
+                val photoTitle = findViewById<EditText>(R.id.edit_viewpic_edittext_title).text.toString()
+                val description = findViewById<EditText>(R.id.edit_viewpic_edittext_description).text.toString()
+                val postData = UploadPostModel(photoTitle, "", description, categories, addressLocation, photoLongitude, photoLatitude, photoAltitude)
 
-            if(photoTitle.isNullOrEmpty() || description.isNullOrEmpty()){
-                Toast.makeText(this, "Please choose a Title and a Description for this Picture", Toast.LENGTH_SHORT).show()
-            }else{
-                uploadPicture(body, postData)
+                if(photoTitle.isNullOrEmpty() || description.isNullOrEmpty()){
+                    Toast.makeText(this, "Please choose a Title and a Description for this Picture", Toast.LENGTH_SHORT).show()
+                }else{
+                    uploadPicture(body, postData)
+                }
             }
+
         }
 
         // auto fill-in for categories
@@ -96,15 +101,18 @@ class PostPictureActivity : AppCompatActivity() {
         UploadNewPost(post,this,
             success = {
                 // handle success
+                pressed = false
                 Log.e("POST","SUCCESS")
                 val backHomeIntent = Intent(this, MainActivity::class.java)
                 startActivity(backHomeIntent)
+
             },
             error = {
                 // handle error
                 Log.e("APIpost",it)
                 val toast = Toast.makeText(applicationContext, "Post failed, please try again later", Toast.LENGTH_LONG)
                 toast.show()
+                pressed = false
             }
         )
     }
@@ -123,6 +131,7 @@ class PostPictureActivity : AppCompatActivity() {
                 Log.e("APIpicture",it)
                 val toast = Toast.makeText(applicationContext,it, Toast.LENGTH_LONG)
                 toast.show()
+                pressed = false
             }
         )
     }

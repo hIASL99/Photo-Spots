@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import at.fhjoanneum.photo_spots.*
 import at.fhjoanneum.photo_spots.databinding.FragmentMapBinding
+import at.fhjoanneum.photo_spots.ui.dashboard.DashboardFragment
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -87,17 +88,33 @@ class MapFragment : Fragment() {
             true
         }
         mMap.setOnInfoWindowClickListener {
-            if (it.tag != "001") {
-                val viewPicIntent = Intent(applicationContext, ViewLocationActivity::class.java)
-                viewPicIntent.putExtra(TAG_ID, it.getTag().toString())
-                viewPicIntent.putExtra(TAG_BOOL, true)
-                //Toast.makeText(this, "success", Toast.LENGTH_LONG).show()
-                startActivity(viewPicIntent)
-            } else {
-                val takePicIntent = Intent(applicationContext, CameraActivity::class.java)
-                startActivity(takePicIntent)
-            }
 
+            val id = it.tag.toString()
+            val db = LoginModelDatabase.getDatabase(requireContext())
+            val username = db.loginModelDao.getUserName().toString()
+
+            PostRepository.getPhotoByID(requireContext(),id.toInt(),
+                success = {
+                    if(it.UserName == username){
+
+                        val intent = Intent(requireContext(), EditPostActivity::class.java)
+                        intent.putExtra(DashboardFragment.TAG_ID, id)
+
+                        intent.putExtra(DashboardFragment.TAG_BOOL, false)
+                        startActivity(intent)
+                    }else{
+                        val viewPicIntent = Intent(requireContext(), ViewLocationActivity::class.java)
+                        viewPicIntent.putExtra(TAG_ID, id)
+                        startActivity(viewPicIntent)
+                    }
+
+                },
+                error = {
+                    val viewPicIntent = Intent(requireContext(), ViewLocationActivity::class.java)
+                    viewPicIntent.putExtra(TAG_ID, id)
+                    startActivity(viewPicIntent)
+                }
+            )
 
 
         }

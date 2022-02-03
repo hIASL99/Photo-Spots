@@ -24,8 +24,10 @@ import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Geocoder
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import at.fhjoanneum.photo_spots.ui.dashboard.DashboardFragment
 
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -65,9 +67,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
         mMap.setOnInfoWindowClickListener {
             if (it.tag != "001") {
-                val viewPicIntent = Intent(this, ViewLocationActivity::class.java)
-                viewPicIntent.putExtra(TAG_ID, it.getTag().toString())
-                startActivity(viewPicIntent)
+
+
+
             } else {
                 val takePicIntent = Intent(this, CameraActivity::class.java)
                 startActivity(takePicIntent)
