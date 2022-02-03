@@ -102,7 +102,7 @@ class PostPictureActivity : AppCompatActivity() {
             },
             error = {
                 // handle error
-                Log.e("API",it)
+                Log.e("APIpost",it)
                 val toast = Toast.makeText(applicationContext, "Post failed, please try again later", Toast.LENGTH_LONG)
                 toast.show()
             }
@@ -114,14 +114,14 @@ class PostPictureActivity : AppCompatActivity() {
         UploadPicture(picture,this,
             success = {
                 // handle success
-                Log.e("POST",it)
+                Log.e("APIpicture",it)
                 postData.Photo = it
                 uploadPost(postData)
             },
             error = {
                 // handle error
-                Log.e("API",it)
-                val toast = Toast.makeText(applicationContext, it, Toast.LENGTH_LONG)
+                Log.e("APIpicture",it)
+                val toast = Toast.makeText(applicationContext,it, Toast.LENGTH_LONG)
                 toast.show()
             }
         )

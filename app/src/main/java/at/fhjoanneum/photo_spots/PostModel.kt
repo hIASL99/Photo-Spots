@@ -40,6 +40,8 @@ class PostModel(val Id:Int,
             Location)
     }
     fun getRating():Float{
+
+
         var result = 0.0f
         if (Rating.size == 0){
             return result
@@ -110,7 +112,7 @@ class PostModel(val Id:Int,
     fun getComments():String{
         var comments = ""
         for (comment in Comments) {
-            comments = comments + comment.UserName + ":\n" + comment.Text + "\n\n"
+            comments = comments + comment.UserName +" "+ comment.DatePosted + ":\n" + comment.Text + "\n\n"
         }
         return comments
     }
@@ -137,12 +139,12 @@ class PostModel(val Id:Int,
 class GpsDataModel (val Altitude: Double, val Latitude: Double, val Longitude: Double, val Address: String)
 
 @JsonClass(generateAdapter = true)
-class PostComment (val UserName: String, val Text: String) {
-    }
+class PostComment (val UserName: String, val Text: String, val DatePosted:String = "Now") {
+}
+
 @JsonClass(generateAdapter = true)
 class UploadPostComment (val UserId: String, val Text: String,val PostId: Int) {
 }
-
 
 @JsonClass(generateAdapter = true)
 class CategoryModel(val Title:String) { }
