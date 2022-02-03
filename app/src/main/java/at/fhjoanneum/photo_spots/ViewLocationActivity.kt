@@ -15,6 +15,8 @@ import android.R.attr.button
 
 import android.graphics.drawable.Drawable
 import android.content.res.ColorStateList
+import android.os.Build
+import androidx.annotation.RequiresApi
 
 
 class ViewLocationActivity : AppCompatActivity() {
@@ -23,6 +25,7 @@ class ViewLocationActivity : AppCompatActivity() {
 
     //private lateinit var locationList: List<PostModel>
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_location)
@@ -65,6 +68,7 @@ class ViewLocationActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun setupPost(location: PostModel) {
         findViewById<TextView>(R.id.viewloc_textview_postuser).setText(location.UserName)
         findViewById<TextView>(R.id.viewloc_text_title).setText(location.Title)
@@ -86,10 +90,10 @@ class ViewLocationActivity : AppCompatActivity() {
         val userHasRated = location.hasRated(this)
         if(userHasRated != null){
             if(userHasRated){
-                findViewById<Button>(R.id.viewloc_button_like).backgroundTintList = getColorStateList(android.R.color.holo_purple)
+                findViewById<Button>(R.id.viewloc_button_like).backgroundTintList = getColorStateList(android.R.color.background_light)
                 findViewById<Button>(R.id.viewloc_button_dislike).backgroundTintList = getColorStateList(android.R.color.background_dark)
             }else{
-                findViewById<Button>(R.id.viewloc_button_dislike).backgroundTintList = getColorStateList(android.R.color.holo_purple)
+                findViewById<Button>(R.id.viewloc_button_dislike).backgroundTintList = getColorStateList(android.R.color.darker_gray)
                 findViewById<Button>(R.id.viewloc_button_like).backgroundTintList = getColorStateList(android.R.color.background_dark)
             }
         }else{
@@ -136,10 +140,11 @@ class ViewLocationActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
             val commentToAdd = findViewById<EditText>(R.id.viewloc_edittext_comment).text.toString()
-
-            location.addComment(commentToAdd,this)
-            findViewById<EditText>(R.id.viewloc_edittext_comment).setText("")
-            setupComments(location)
+            if (commentToAdd != "") {
+                location.addComment(commentToAdd,this)
+                findViewById<EditText>(R.id.viewloc_edittext_comment).setText("")
+                setupComments(location)
+            }
         }
 
     }

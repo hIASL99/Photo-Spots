@@ -115,8 +115,8 @@ class DashboardFragment : Fragment() {
         PostRepository.getphotoList(context,
             success = {
                 // handle success
-                postAdapter.updateList(it)
-                postList = it
+                postAdapter.updateList(it.reversed())
+                postList = it.reversed()
             },
             error = {
                 // handle error
