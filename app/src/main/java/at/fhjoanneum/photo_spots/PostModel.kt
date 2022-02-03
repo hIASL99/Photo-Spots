@@ -46,7 +46,11 @@ class PostModel(val Id:Int,
                 result += 1
             }
         }
-        return (result / Rating.size) * 5
+        if (Rating.size == 0) {
+            return result
+        }else{
+            return (result / Rating.size) * 5
+        }
     }
     fun addPostRating(rating: Boolean, context: Context){
 
