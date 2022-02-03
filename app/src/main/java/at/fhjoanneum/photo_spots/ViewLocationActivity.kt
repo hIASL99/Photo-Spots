@@ -136,7 +136,9 @@ class ViewLocationActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.viewloc_button_commentadd).setOnClickListener() {
             val commentToAdd = findViewById<EditText>(R.id.viewloc_edittext_comment).text.toString()
+
             location.addComment(commentToAdd,this)
+            findViewById<EditText>(R.id.viewloc_edittext_comment).setText("")
             setupComments(location)
         }
 
