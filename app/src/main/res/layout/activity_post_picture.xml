@@ -9,6 +9,17 @@
         android:layout_height="match_parent"
         tools:context=".PostPictureActivity">
 
+        <Button
+            android:id="@+id/viewpic_button_refresh_address"
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:insetLeft="3dp"
+            android:insetRight="3dp"
+            app:icon="@drawable/ic_baseline_refresh_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewpic_textview_address" />
+
         <ImageView
             android:id="@+id/viewpic_imageview"
             android:layout_width="fill_parent"
@@ -38,22 +49,24 @@
 
         <EditText
             android:id="@+id/viewpic_edittext_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_35"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_imageview" />
 
         <TextView
             android:id="@+id/viewpic_text_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:text="Title"
             app:layout_constraintBottom_toBottomOf="@+id/viewpic_edittext_title"
+            app:layout_constraintEnd_toStartOf="@+id/viewpic_edittext_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewpic_edittext_title" />
 
@@ -61,7 +74,7 @@
             android:id="@+id/viewpic_textview_gpslabel_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:text="Address"
             app:layout_constraintStart_toStartOf="@+id/viewpic_text_name"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_text_name" />
@@ -70,12 +83,14 @@
             android:id="@+id/viewpic_textview_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
-            android:text="TextView"
-            app:layout_constraintEnd_toEndOf="@+id/viewpic_edittext_title"
+            android:minHeight="40dp"
+            android:text="ViewText"
+            app:layout_constraintEnd_toStartOf="@+id/viewpic_button_refresh_address"
             app:layout_constraintStart_toStartOf="@+id/viewpic_edittext_title"
             app:layout_constraintTop_toTopOf="@+id/viewpic_textview_gpslabel_add"
-            app:layout_constraintWidth_max="250dp" />
+            app:layout_constraintWidth_max="150dp" />
 
         <TextView
             android:id="@+id/viewpic_textview_label_desc"
@@ -84,17 +99,18 @@
             android:layout_marginTop="32dp"
             android:text="Description"
             app:layout_constraintStart_toStartOf="@+id/viewpic_textview_gpslabel_add"
-            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_gpslabel_add" />
+            app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_address" />
 
         <EditText
             android:id="@+id/viewpic_edittext_description"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="16dp"
             android:ems="10"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="@+id/viewpic_textview_label_desc"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_35"
             app:layout_constraintTop_toTopOf="@+id/viewpic_textview_label_desc" />
 
         <TextView
@@ -120,7 +136,7 @@
             android:id="@+id/viewpic_textview_cat1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="@+id/viewpic_textview_label_categories"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
@@ -129,7 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat1"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
@@ -138,7 +154,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintStart_toEndOf="@+id/viewpic_textview_cat2"
             app:layout_constraintTop_toBottomOf="@+id/viewpic_textview_label_categories" />
 
@@ -162,6 +178,13 @@
             app:layout_constraintEnd_toStartOf="@+id/viewpic_button_categoryadd"
             app:layout_constraintStart_toStartOf="@+id/viewpic_edittext_description"
             app:layout_constraintTop_toTopOf="@+id/viewpic_textview_label_categories" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -47,6 +47,7 @@ class PostPictureActivity : AppCompatActivity() {
         setContentView(R.layout.activity_post_picture)
 
         getSuggestions()
+
         val imageUriString: String = intent.getStringExtra(CameraActivity.IMAGE_URI).toString()
         //Toast.makeText(this, imageUriString, Toast.LENGTH_SHORT).show()
         val imageUri: Uri = imageUriString.toUri()
@@ -63,14 +64,18 @@ class PostPictureActivity : AppCompatActivity() {
         val imageFile: File = imageUri.toFile()
 
 
-
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this)
         checkLocationPermission()
+
+        findViewById<Button>(R.id.viewpic_button_refresh_address).setOnClickListener {
+            getUserLocation()
+        }
 
         findViewById<Button>(R.id.viewpic_button_retake).setOnClickListener(){
             val retakeIntent = Intent(this, CameraActivity::class.java)
             startActivity(retakeIntent)
         }
+
         findViewById<Button>(R.id.viewpic_button_post).setOnClickListener(){
 
             val reqFile = RequestBody.create(MediaType.parse("image/*"), imageFile)
@@ -85,11 +90,6 @@ class PostPictureActivity : AppCompatActivity() {
                 uploadPicture(body, postData)
             }
         }
-
-        // auto fill-in for categories
-
-
-
     }
 
     private fun uploadPost(post:UploadPostModel){
@@ -262,8 +262,8 @@ class PostPictureActivity : AppCompatActivity() {
         getCategories(this,
             success = {
                 // handle success
-                // TODO: better solution?
                 suggestions = it
+                // auto fill-in for categories
                 val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
                 val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, it)
                 editCategories.setAdapter(adapter)
@@ -271,7 +271,6 @@ class PostPictureActivity : AppCompatActivity() {
                 findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
                     addCategory()
                 }
-
             },
             error = {
                 // handle error
