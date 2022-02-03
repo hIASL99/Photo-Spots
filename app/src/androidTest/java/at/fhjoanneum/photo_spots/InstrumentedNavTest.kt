@@ -12,12 +12,16 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+
+// one needs to be logged in on the emulator before testing, otherwise the dashboard test will not work
+// for testing login with user: InstrumentedTests, password: MAPPDEVima20
 
 @RunWith(AndroidJUnit4::class)
 class InstrumentedNavTest {
@@ -35,7 +39,7 @@ class InstrumentedNavTest {
     }
 
     @Test
-    fun dashboard_clickingAnItem_opensDetail() {
+    fun dashboard_clickingAnItem_opensDetail_share() {
         onView(withId(R.id.navigation_dashboard)).perform(click())
         Thread.sleep(5000)
         onView(withId(R.id.dashboard_recyclerview))
@@ -64,18 +68,9 @@ class InstrumentedNavTest {
         intended(hasComponent(PostPictureActivity::class.java.name))
     }
 
-    /*
-    @Test
-    fun checkHome() {
-        Thread.sleep(2000)
-        // doesn't work because ActionLabel does not expose its text via getText()
-        onView(withText("My Photo-Spots")).check(matches(isDisplayed()))
-    }
-    */
-
     @Test
     fun checkHeaderMenu() {
-        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext());
+        openActionBarOverflowOrOptionsMenu(getInstrumentation().getTargetContext())
         Thread.sleep(2000)
         onView(withText("Change Password"))
             .check(matches(isDisplayed()))
