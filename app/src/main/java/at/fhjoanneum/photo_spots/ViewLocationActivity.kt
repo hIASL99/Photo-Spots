@@ -35,7 +35,6 @@ class ViewLocationActivity : AppCompatActivity() {
         val idFromDashboard = intent.getStringExtra(DashboardFragment.TAG_ID)?.toInt()
 
         if (idFromMap != null) {
-            Toast.makeText(this, idFromMap.toString(), Toast.LENGTH_LONG).show()
             PostRepository.getphotoList(this,
                 success = {
                     //location = it.filter {it.Id == idFromMap}[0]
@@ -51,7 +50,6 @@ class ViewLocationActivity : AppCompatActivity() {
                 }
             )
         } else if (idFromDashboard != null) {
-            //Toast.makeText(this, idFromDashboard.toString(), Toast.LENGTH_LONG).show()
             PostRepository.getphotoList(this,
                 success = {
                     if (it.find { it.Id == idFromDashboard } != null) {
