@@ -16,3 +16,5 @@ Installation:
 - Install the App
 - Register and Login to work with the app
 
+API overview
+- https://photospot.matthiaswindisch.eu/Help
