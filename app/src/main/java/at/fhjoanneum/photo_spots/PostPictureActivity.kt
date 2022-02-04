@@ -34,7 +34,7 @@ import okhttp3.MultipartBody
 class PostPictureActivity : AppCompatActivity() {
 
     private var categories = mutableListOf<String>()
-    private var suggestions = listOf<String>()
+    private var suggestions = mutableListOf<String>()
     private var photoLongitude:Double = 0.0
     private var photoLatitude:Double = 0.0
     private var  photoAltitude:Double = 0.0
@@ -140,6 +140,8 @@ class PostPictureActivity : AppCompatActivity() {
         var previousText: String = "test"
 
         if (insertText in suggestions) {
+            suggestions.remove(insertText)
+            updateSuggestions()
             categories.add(insertText)
 
             if (findViewById<TextView>(R.id.viewpic_textview_cat1).text == "") {
@@ -266,19 +268,23 @@ class PostPictureActivity : AppCompatActivity() {
         }
     }
 
+    fun updateSuggestions(){
+        // auto fill-in for categories
+        val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, suggestions)
+        editCategories.setAdapter(adapter)
+
+        findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
+            addCategory()
+        }
+    }
+
     fun getSuggestions() {
         getCategories(this,
             success = {
                 // handle success
-                suggestions = it
-                // auto fill-in for categories
-                val editCategories: AutoCompleteTextView = findViewById(R.id.viewpic_edittext_category)
-                val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, it)
-                editCategories.setAdapter(adapter)
-
-                findViewById<Button>(R.id.viewpic_button_categoryadd).setOnClickListener() {
-                    addCategory()
-                }
+                suggestions = it.toMutableList()
+                updateSuggestions()
             },
             error = {
                 // handle error
